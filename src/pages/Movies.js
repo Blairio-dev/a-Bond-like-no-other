@@ -21,6 +21,7 @@ class Movies extends Component {
 
 	render() {
 		const { isOpen, selectedMovieDetails } = this.state;
+		const { addFavouriteMovieOnClick, favouriteMovieTitles } = this.props;
 		return (
 			<Page>
 				<PageHeading text="Movies" />
@@ -39,8 +40,10 @@ class Movies extends Component {
 					{selectedMovieDetails && (
 						<MovieModal
 							actorName={selectedMovieDetails['Bond Actor']}
+							addFavouriteMovieOnClick={addFavouriteMovieOnClick}
 							boxOfficeTakings={selectedMovieDetails['Box Office(Millions)']}
 							description={selectedMovieDetails['Description']}
+							favouriteMovieTitles={favouriteMovieTitles}
 							imageUrl={selectedMovieDetails.ImageURL}
 							key={selectedMovieDetails.Film + selectedMovieDetails['UK release date']}
 							movieName={selectedMovieDetails.Film}

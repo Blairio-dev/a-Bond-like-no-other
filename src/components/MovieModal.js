@@ -7,7 +7,7 @@ import colours from '../assets/colours.json';
 import { ReactComponent as Star } from '../assets/star.svg';
 
 injectGlobal(`
-	.has-session-timeout-takeover {
+	.modal-open {
 		overflow: hidden;
 	}
 `);
@@ -40,19 +40,20 @@ const StyledPoster = styled('img')`
 const StyledFaveTitle = styled('div')`
 	align-items: center;
 	display: flex;
-
-	svg {
-		height: 24px;
-		margin-bottom: 16px;
-		margin-right: 8px;
-		stroke: grey;
-		stroke-width: 16px;
-		width: 24px;
-	}
 `;
 
 const StyledFavouriteButton = styled('button')`
 	display: contents;
+
+	svg {
+		height: 24px;
+		fill: ${(props) => (props.isFavouriteMovie ? colours.gold : 'grey')};
+		margin-bottom: 16px;
+		margin-right: 8px;
+		stroke: ${(props) => (props.isFavouriteMovie ? colours.gold : 'grey')};
+		stroke-width: 16px;
+		width: 24px;
+	}
 
 	:hover {
 		cursor: pointer;
@@ -93,40 +94,46 @@ const StyledWrapper = styled('div')`
 
 const MovieModal = ({
 	actorName,
+	addFavouriteMovieOnClick,
 	boxOfficeTakings,
 	description,
+	favouriteMovieTitles,
 	imageUrl,
 	isOpen,
 	movieName,
 	onClick,
 	ukReleaseDate,
-}) => (
-	<StyledWrapper isOpen={isOpen}>
-		{isOpen
-			? document.body.classList.add('has-session-timeout-takeover')
-			: document.body.classList.remove('has-session-timeout-takeover')}
-		<StyledModal>
-			<StyledTopBar>
-				<StyledFaveTitle>
-					<StyledFavouriteButton onClick={() => console.log('Faved!')}>
-						<Star />
-					</StyledFavouriteButton>
-					<Title text={movieName} />
-				</StyledFaveTitle>
-				<StyledCloseButton onClick={onClick}>Close</StyledCloseButton>
-			</StyledTopBar>
-			<StyledPoster src={imageUrl} alt={`${movieName}-poster`} />
-			<Body text={ukReleaseDate} />
-			<Body text={actorName} />
-			<Body text={boxOfficeTakings} />
-			<Body text={description} />
-		</StyledModal>
-	</StyledWrapper>
-);
+}) => {
+	const isFavouriteMovie = favouriteMovieTitles.includes(movieName);
+	console.log(isFavouriteMovie);
+	return (
+		<StyledWrapper isOpen={isOpen}>
+			{isOpen ? document.body.classList.add('modal-open') : document.body.classList.remove('modal-open')}
+			<StyledModal>
+				<StyledTopBar>
+					<StyledFaveTitle>
+						<StyledFavouriteButton isFavouriteMovie={isFavouriteMovie} onClick={addFavouriteMovieOnClick(movieName)}>
+							<Star />
+						</StyledFavouriteButton>
+						<Title text={movieName} />
+					</StyledFaveTitle>
+					<StyledCloseButton onClick={onClick}>Close</StyledCloseButton>
+				</StyledTopBar>
+				<StyledPoster src={imageUrl} alt={`${movieName}-poster`} />
+				<Body text={ukReleaseDate} />
+				<Body text={actorName} />
+				<Body text={boxOfficeTakings} />
+				<Body text={description} />
+			</StyledModal>
+		</StyledWrapper>
+	);
+};
 
 MovieModal.propTypes = {
 	actorName: PropTypes.string.isRequired,
+	addFavouriteMovieOnClick: PropTypes.func.isRequired,
 	description: PropTypes.string.isRequired,
+	favouriteMovieTitles: PropTypes.array.isRequired,
 	imageUrl: PropTypes.string.isRequired,
 	movieName: PropTypes.string.isRequired,
 	isOpen: PropTypes.bool.isRequired,
