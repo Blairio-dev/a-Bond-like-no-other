@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="232px" height="75px" viewBox="0 0 232 75" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <filter id="filter-1">
+        <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0.555304 0 0 0 0 0.400879 0 0 0 0 0.001980 0 0 0 1.000000 0"></feColorMatrix>
+    </filter>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g filter="url(#filter-1)" id="gold-finger">
+            <g transform="translate(116.000000, 37.500000) rotate(270.000000) translate(-116.000000, -37.500000) translate(78.500000, -78.500000)">
+                <path d="M74.5,52.3060672 L74.5,231.5 L0.5,231.5 L0.5,52.3060672 C0.5,-16.7686891 74.5,-16.7686891 74.5,52.3060672 Z M56.8809524,37.5203868 L56.8809524,74.6469744 L18.1190476,74.6469744 L18.1190476,37.5203868 C18.1190476,18.1133069 56.8809524,17.2695208 56.8809524,37.5203868 Z M14.5952381,146.406826 L60.4047619,146.406826 L60.4047619,155.406826 L14.5952381,155.406826 L14.5952381,146.406826 Z M14.5952381,126.381907 L60.4047619,126.381907 L60.4047619,135.381907 L14.5952381,135.381907 L14.5952381,126.381907 Z" id="Shape" fill="#000000"></path>
+            </g>
+        </g>
+    </g>
+</svg>
