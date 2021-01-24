@@ -10,15 +10,19 @@ class App extends Component {
 		this.state = {
 			favouriteMovieTitles: [],
 		};
-
-		this.addFavouriteMovie = this.addFavouriteMovie.bind(this);
 	}
 
 	addFavouriteMovie = (movie) => () => {
+		const isFavourite = this.state.favouriteMovieTitles.includes(movie);
 		const currentFaves = [...this.state.favouriteMovieTitles];
-		!currentFaves.includes(movie) && currentFaves.push(movie);
-		this.setState({ favouriteMovieTitles: currentFaves });
-		console.log(this.state.favouriteMovieTitles);
+		let newFaves;
+		if (isFavourite) {
+			newFaves = currentFaves.filter((favouriteMovie) => favouriteMovie !== movie);
+		} else {
+			currentFaves.push(movie);
+			newFaves = [...currentFaves];
+		}
+		this.setState({ favouriteMovieTitles: newFaves });
 	};
 
 	render() {

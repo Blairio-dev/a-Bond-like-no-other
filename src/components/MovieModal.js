@@ -105,7 +105,6 @@ const MovieModal = ({
 	ukReleaseDate,
 }) => {
 	const isFavouriteMovie = favouriteMovieTitles.includes(movieName);
-	console.log(isFavouriteMovie);
 	return (
 		<StyledWrapper isOpen={isOpen}>
 			{isOpen ? document.body.classList.add('modal-open') : document.body.classList.remove('modal-open')}
