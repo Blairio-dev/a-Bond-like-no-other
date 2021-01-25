@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { HomePage, MoviesPage, FavouritesPage } from './pages';
 import { Sidebar } from './components';
-import { updateFavouriteMovies, updateSelectedMovie } from './data/SessionStorageWriter';
-import { checkFavouriteMovies, checkSelectedMovie } from './data/SessionStorageReader';
+import { updateSelectedMovie } from './data/SessionStorageWriter';
+import { checkSelectedMovie } from './data/SessionStorageReader';
+import { updateFavouriteMovies } from './data/LocalStorageWriter';
+import { checkFavouriteMovies } from './data/LocalStorageReader';
 
 class App extends Component {
 	constructor(props) {
@@ -43,7 +45,6 @@ class App extends Component {
 
 	render() {
 		const { favouriteMovieTitles, isOpen, selectedMovieDetails } = this.state;
-
 		return (
 			<Router>
 				<Sidebar />
