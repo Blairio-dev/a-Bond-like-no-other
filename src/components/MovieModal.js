@@ -32,10 +32,9 @@ const StyledCloseButton = styled('button')`
 
 const StyledPoster = styled('img')`
 	border-radius: 2px;
-	height: 21vh;
 	margin-bottom: 16px;
 	transition: transform 0.1s ease-out;
-	width: 100%;
+	width: 660px;
 `;
 
 const StyledFaveTitle = styled('div')`
@@ -69,9 +68,9 @@ const StyledModal = styled('div')`
 	background: hsl(0deg 0% 0%);
 	border: 2px solid ${colours.gold};
 	display: flex;
-	height: fit-content;
+	height: min-content;
 	flex-direction: column;
-	max-width: 580px;
+	max-width: min-content;
 	padding: 16px;
 `;
 

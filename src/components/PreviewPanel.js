@@ -17,10 +17,9 @@ const StyledButton = styled('button')`
 
 const StyledPoster = styled('img')`
 	border-radius: 2px;
-	height: 360px;
 	margin-bottom: 16px;
 	transition: transform 0.1s ease-out;
-	width: 360px;
+	width: 440px;
 `;
 
 const StyledWrapper = styled('div')`
