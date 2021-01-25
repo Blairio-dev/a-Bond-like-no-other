@@ -2,19 +2,22 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Home, Movies, Favourites } from './pages';
 import { Sidebar } from './components';
+import { updateFavouriteMovies } from './data/SessionStorageWriter';
+import { checkFavouriteMovies } from './data/SessionStorageReader';
 
 class App extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			favouriteMovieTitles: [],
+			favouriteMovieTitles: checkFavouriteMovies(),
 		};
 	}
 
 	addFavouriteMovie = (movie) => () => {
 		const isFavourite = this.state.favouriteMovieTitles.includes(movie);
 		const currentFaves = [...this.state.favouriteMovieTitles];
+
 		let newFaves;
 		if (isFavourite) {
 			newFaves = currentFaves.filter((favouriteMovie) => favouriteMovie !== movie);
@@ -23,6 +26,7 @@ class App extends Component {
 			newFaves = [...currentFaves];
 		}
 		this.setState({ favouriteMovieTitles: newFaves });
+		updateFavouriteMovies(newFaves);
 	};
 
 	render() {

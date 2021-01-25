@@ -3,6 +3,8 @@ import { MovieModal, Page, PreviewPanel } from '../components';
 import movies from '../data/movies.json';
 import styled from '@emotion/styled';
 import { PageHeading } from '../typography';
+import { checkSelectedMovie } from '../data/SessionStorageReader';
+import { updateSelectedMovie } from '../data/SessionStorageWriter';
 
 const StyledGrid = styled('div')`
 	display: flex;
@@ -14,13 +16,22 @@ class Movies extends Component {
 		super(props);
 
 		this.state = {
-			isOpen: false,
-			selectedMovieDetails: null,
+			selectedMovieDetails: checkSelectedMovie(),
 		};
 	}
 
+	closeOnClickHandler = () => {
+		this.setState(() => ({ selectedMovieDetails: '' }));
+		updateSelectedMovie('');
+	};
+
+	previewOnClickHandler = (movie) => {
+		this.setState(() => ({ selectedMovieDetails: movie }));
+		updateSelectedMovie(movie);
+	};
+
 	render() {
-		const { isOpen, selectedMovieDetails } = this.state;
+		const { selectedMovieDetails } = this.state;
 		const { addFavouriteMovieOnClick, favouriteMovieTitles } = this.props;
 		return (
 			<Page>
@@ -32,12 +43,12 @@ class Movies extends Component {
 								actorName={movie['Bond Actor']}
 								imageUrl={movie.ImageURL}
 								movieName={movie.Film}
-								onClick={() => this.setState(() => ({ isOpen: true, selectedMovieDetails: movie }))}
+								onClick={() => this.previewOnClickHandler(movie)}
 								ukReleaseDate={movie['UK release date']}
 							/>
 						</div>
 					))}
-					{selectedMovieDetails && (
+					{selectedMovieDetails !== '' && (
 						<MovieModal
 							actorName={selectedMovieDetails['Bond Actor']}
 							addFavouriteMovieOnClick={addFavouriteMovieOnClick}
@@ -47,8 +58,8 @@ class Movies extends Component {
 							imageUrl={selectedMovieDetails.ImageURL}
 							key={selectedMovieDetails.Film + selectedMovieDetails['UK release date']}
 							movieName={selectedMovieDetails.Film}
-							isOpen={isOpen}
-							onClick={() => this.setState(() => ({ isOpen: false }))}
+							isOpen={selectedMovieDetails !== ''}
+							onClick={() => this.closeOnClickHandler()}
 							ukReleaseDate={selectedMovieDetails['UK release date']}
 						/>
 					)}
