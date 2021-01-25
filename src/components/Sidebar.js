@@ -41,9 +41,9 @@ const StyledItem = styled('li')`
 	}
 
 	svg {
-		height: 16px;
-		margin-left: 9px;
-		width: 32px;
+		height: 14px;
+		margin-left: 8px;
+		width: 48px;
 	}
 `;
 
