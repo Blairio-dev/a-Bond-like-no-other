@@ -32,7 +32,7 @@ class Movies extends Component {
 
 	render() {
 		const { selectedMovieDetails } = this.state;
-		const { addFavouriteMovieOnClick, favouriteMovieTitles } = this.props;
+		const { toggleFavouriteMovieOnClick, favouriteMovieTitles } = this.props;
 		return (
 			<Page>
 				<PageHeading text="Movies" />
@@ -51,7 +51,7 @@ class Movies extends Component {
 					{selectedMovieDetails !== '' && (
 						<MovieModal
 							actorName={selectedMovieDetails['Bond Actor']}
-							addFavouriteMovieOnClick={addFavouriteMovieOnClick}
+							toggleFavouriteMovieOnClick={toggleFavouriteMovieOnClick}
 							boxOfficeTakings={selectedMovieDetails['Box Office(Millions)']}
 							description={selectedMovieDetails['Description']}
 							favouriteMovieTitles={favouriteMovieTitles}

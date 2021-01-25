@@ -94,7 +94,7 @@ const StyledWrapper = styled('div')`
 
 const MovieModal = ({
 	actorName,
-	addFavouriteMovieOnClick,
+	toggleFavouriteMovieOnClick,
 	boxOfficeTakings,
 	description,
 	favouriteMovieTitles,
@@ -111,7 +111,7 @@ const MovieModal = ({
 			<StyledModal>
 				<StyledTopBar>
 					<StyledFaveTitle>
-						<StyledFavouriteButton isFavouriteMovie={isFavouriteMovie} onClick={addFavouriteMovieOnClick(movieName)}>
+						<StyledFavouriteButton isFavouriteMovie={isFavouriteMovie} onClick={toggleFavouriteMovieOnClick(movieName)}>
 							<Star />
 						</StyledFavouriteButton>
 						<Title text={movieName} />
@@ -130,7 +130,7 @@ const MovieModal = ({
 
 MovieModal.propTypes = {
 	actorName: PropTypes.string.isRequired,
-	addFavouriteMovieOnClick: PropTypes.func.isRequired,
+	toggleFavouriteMovieOnClick: PropTypes.func.isRequired,
 	description: PropTypes.string.isRequired,
 	favouriteMovieTitles: PropTypes.array.isRequired,
 	imageUrl: PropTypes.string.isRequired,

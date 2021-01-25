@@ -14,7 +14,7 @@ class App extends Component {
 		};
 	}
 
-	addFavouriteMovie = (movie) => () => {
+	toggleFavouriteMovie = (movie) => () => {
 		const isFavourite = this.state.favouriteMovieTitles.includes(movie);
 		const currentFaves = [...this.state.favouriteMovieTitles];
 
@@ -41,14 +41,17 @@ class App extends Component {
 						path="/movies"
 						exact
 						component={() => (
-							<Movies addFavouriteMovieOnClick={this.addFavouriteMovie} favouriteMovieTitles={favouriteMovieTitles} />
+							<Movies toggleFavouriteMovieOnClick={this.toggleFavouriteMovie} favouriteMovieTitles={favouriteMovieTitles} />
 						)}
 					/>
 					<Route
 						path="/favourites"
 						exact
 						component={() => (
-							<Favourites addFavouriteMovieOnClick={this.addFavouriteMovie} favouriteMovieTitles={favouriteMovieTitles} />
+							<Favourites
+								toggleFavouriteMovieOnClick={this.toggleFavouriteMovie}
+								favouriteMovieTitles={favouriteMovieTitles}
+							/>
 						)}
 					/>
 				</Switch>
