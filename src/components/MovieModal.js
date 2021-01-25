@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { injectGlobal } from 'emotion';
-import { Body, Title } from '../typography';
+import { StandardText, Title } from '../typography';
 import colours from '../assets/colours.json';
 import { ReactComponent as Star } from '../assets/star.svg';
+import { DescriptionList } from './DescriptionList';
 
 injectGlobal(`
 	.modal-open {
@@ -121,10 +122,14 @@ const MovieModal = ({
 					<StyledCloseButton onClick={closeOnClick}>Close</StyledCloseButton>
 				</StyledTopBar>
 				<StyledPoster src={imageUrl} alt={`${movieName}-poster`} />
-				<Body text={ukReleaseDate} />
-				<Body text={actorName} />
-				<Body text={boxOfficeTakings} />
-				<Body text={description} />
+				<DescriptionList
+					items={[
+						{ tag: 'Release Date (UK)', description: ukReleaseDate },
+						{ tag: 'Box Office (£ Millions)', description: boxOfficeTakings },
+						{ tag: 'Actor', description: actorName },
+						{ description: description },
+					]}
+				/>
 			</StyledModal>
 		</StyledWrapper>
 	);

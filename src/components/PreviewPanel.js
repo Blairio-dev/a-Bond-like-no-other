@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Body, Title } from '../typography';
+import { Title } from '../typography';
 import PropTypes from 'prop-types';
+import { DescriptionList } from './DescriptionList';
 
 const StyledButton = styled('button')`
 	display: contents;
@@ -35,8 +36,12 @@ const PreviewPanel = ({ actorName, imageUrl, movieName, onClick, ukReleaseDate }
 		<StyledButton onClick={onClick}>
 			<StyledPoster src={imageUrl} alt={`${movieName}-poster`} />
 		</StyledButton>
-		<Body text={ukReleaseDate} />
-		<Body text={actorName} />
+		<DescriptionList
+			items={[
+				{ tag: 'Actor', description: actorName },
+				{ tag: 'Release Date (UK)', description: ukReleaseDate },
+			]}
+		/>
 	</StyledWrapper>
 );
 

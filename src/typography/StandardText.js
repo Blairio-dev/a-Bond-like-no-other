@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 
 const StyledBody = styled('span')`
 	color: white;
-	font-size: 2416x;
+	font-size: 16px;
 	margin-bottom: 8px;
 	margin-top: 0;
 `;
 
-const Body = ({ text }) => <StyledBody>{text}</StyledBody>;
+const StandardText = ({ text }) => <StyledBody>{text}</StyledBody>;
 
-Body.propTypes = {
+StandardText.propTypes = {
 	text: PropTypes.node.isRequired,
 };
 
-export { Body };
+export { StandardText };
