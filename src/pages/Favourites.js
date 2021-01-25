@@ -61,7 +61,7 @@ class Favourites extends Component {
 							key={selectedMovieDetails.Film + selectedMovieDetails['UK release date']}
 							movieName={selectedMovieDetails.Film}
 							isOpen={selectedMovieDetails !== ''}
-							onClick={() => this.setState(() => ({ isOpen: false }))}
+							onClick={() => this.closeOnClickHandler()}
 							ukReleaseDate={selectedMovieDetails['UK release date']}
 						/>
 					)}
