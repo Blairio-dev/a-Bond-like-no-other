@@ -1,8 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { injectGlobal } from 'emotion';
 import { Body, Title } from '../typography';
-import PropTypes from 'prop-types';
 import colours from '../assets/colours.json';
 import { ReactComponent as Star } from '../assets/star.svg';
 
@@ -93,21 +93,23 @@ const StyledWrapper = styled('div')`
 `;
 
 const MovieModal = ({
-	actorName,
-	toggleFavouriteMovieOnClick,
-	boxOfficeTakings,
-	description,
+	closeOnClick,
 	favouriteMovieTitles,
-	imageUrl,
 	isOpen,
-	movieName,
-	onClick,
-	ukReleaseDate,
+	selectedMovieDetails,
+	toggleFavouriteMovieOnClick,
 }) => {
+	const {
+		'Bond Actor': actorName,
+		'Box Office(Millions)': boxOfficeTakings,
+		Description: description,
+		ImageURL: imageUrl,
+		Film: movieName,
+		'UK release date': ukReleaseDate,
+	} = selectedMovieDetails;
 	const isFavouriteMovie = favouriteMovieTitles.includes(movieName);
 	return (
 		<StyledWrapper isOpen={isOpen}>
-			{isOpen ? document.body.classList.add('modal-open') : document.body.classList.remove('modal-open')}
 			<StyledModal>
 				<StyledTopBar>
 					<StyledFaveTitle>
@@ -116,7 +118,7 @@ const MovieModal = ({
 						</StyledFavouriteButton>
 						<Title text={movieName} />
 					</StyledFaveTitle>
-					<StyledCloseButton onClick={onClick}>Close</StyledCloseButton>
+					<StyledCloseButton onClick={closeOnClick}>Close</StyledCloseButton>
 				</StyledTopBar>
 				<StyledPoster src={imageUrl} alt={`${movieName}-poster`} />
 				<Body text={ukReleaseDate} />
@@ -129,15 +131,18 @@ const MovieModal = ({
 };
 
 MovieModal.propTypes = {
-	actorName: PropTypes.string.isRequired,
-	toggleFavouriteMovieOnClick: PropTypes.func.isRequired,
-	description: PropTypes.string.isRequired,
+	closeOnClick: PropTypes.func.isRequired,
 	favouriteMovieTitles: PropTypes.array.isRequired,
-	imageUrl: PropTypes.string.isRequired,
-	movieName: PropTypes.string.isRequired,
 	isOpen: PropTypes.bool.isRequired,
-	boxOfficeTakings: PropTypes.string.isRequired,
-	ukReleaseDate: PropTypes.string.isRequired,
+	selectedMovieDetails: PropTypes.shape({
+		'Bond Actor': PropTypes.string.isRequired,
+		'Box Office(Millions)': PropTypes.string.isRequired,
+		Description: PropTypes.string.isRequired,
+		ImageURL: PropTypes.string.isRequired,
+		Film: PropTypes.string.isRequired,
+		'UK release date': PropTypes.string.isRequired,
+	}).isRequired,
+	toggleFavouriteMovieOnClick: PropTypes.func.isRequired,
 };
 
 MovieModal.defaultProps = {

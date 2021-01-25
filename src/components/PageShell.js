@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import colours from '../assets/colours.json';
 
@@ -8,6 +9,10 @@ const StyledWrapper = styled('div')`
 	padding: 24px;
 `;
 
-const Page = ({ children }) => <StyledWrapper>{children}</StyledWrapper>;
+const PageShell = ({ children }) => <StyledWrapper>{children}</StyledWrapper>;
 
-export { Page };
+PageShell.propTypes = {
+	children: PropTypes.node,
+};
+
+export { PageShell };

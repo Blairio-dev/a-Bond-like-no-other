@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Home, Movies, Favourites } from './pages';
+import { HomePage, MoviesPage, FavouritesPage } from './pages';
 import { Sidebar } from './components';
-import { updateFavouriteMovies } from './data/SessionStorageWriter';
-import { checkFavouriteMovies } from './data/SessionStorageReader';
+import { updateFavouriteMovies, updateSelectedMovie } from './data/SessionStorageWriter';
+import { checkFavouriteMovies, checkSelectedMovie } from './data/SessionStorageReader';
 
 class App extends Component {
 	constructor(props) {
@@ -11,8 +11,20 @@ class App extends Component {
 
 		this.state = {
 			favouriteMovieTitles: checkFavouriteMovies(),
+			isOpen: Object.keys(checkSelectedMovie()).length !== 0,
+			selectedMovieDetails: checkSelectedMovie(),
 		};
 	}
+
+	closeOnClickHandler = () => {
+		this.setState(() => ({ isOpen: false, selectedMovieDetails: {} }));
+		updateSelectedMovie({});
+	};
+
+	previewOnClickHandler = (movie) => {
+		this.setState(() => ({ isOpen: true, selectedMovieDetails: movie }));
+		updateSelectedMovie(movie);
+	};
 
 	toggleFavouriteMovie = (movie) => () => {
 		const isFavourite = this.state.favouriteMovieTitles.includes(movie);
@@ -30,27 +42,38 @@ class App extends Component {
 	};
 
 	render() {
-		const { favouriteMovieTitles } = this.state;
+		const { favouriteMovieTitles, isOpen, selectedMovieDetails } = this.state;
 
 		return (
 			<Router>
 				<Sidebar />
 				<Switch>
-					<Route path="/" exact component={() => <Home />} />
+					<Route path="/" exact component={() => <HomePage />} />
 					<Route
 						path="/movies"
 						exact
 						component={() => (
-							<Movies toggleFavouriteMovieOnClick={this.toggleFavouriteMovie} favouriteMovieTitles={favouriteMovieTitles} />
+							<MoviesPage
+								closeOnClickHandler={this.closeOnClickHandler}
+								favouriteMovieTitles={favouriteMovieTitles}
+								isOpen={isOpen}
+								previewOnClickHandler={this.previewOnClickHandler}
+								selectedMovieDetails={selectedMovieDetails}
+								toggleFavouriteMovieOnClick={this.toggleFavouriteMovie}
+							/>
 						)}
 					/>
 					<Route
 						path="/favourites"
 						exact
 						component={() => (
-							<Favourites
-								toggleFavouriteMovieOnClick={this.toggleFavouriteMovie}
+							<FavouritesPage
+								closeOnClickHandler={this.closeOnClickHandler}
 								favouriteMovieTitles={favouriteMovieTitles}
+								isOpen={isOpen}
+								previewOnClickHandler={this.previewOnClickHandler}
+								selectedMovieDetails={selectedMovieDetails}
+								toggleFavouriteMovieOnClick={this.toggleFavouriteMovie}
 							/>
 						)}
 					/>
