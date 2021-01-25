@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { injectGlobal } from 'emotion';
-import { StandardText, Title } from '../typography';
+import { Title } from '../typography';
 import colours from '../assets/colours.json';
 import { ReactComponent as Star } from '../assets/star.svg';
 import { DescriptionList } from './DescriptionList';

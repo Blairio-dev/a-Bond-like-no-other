@@ -19,10 +19,11 @@ const StyledWrapper = styled('div')`
 
 const DescriptionList = ({ items }) => (
 	<StyledDescriptionList>
-		{items.map(({ tag, description }) => {
+		{items.map(({ tag, description, index }) => {
 			const hasTag = !!tag;
+			const key = tag ? tag + index : `description-${index}`;
 			return (
-				<StyledWrapper hasTag={hasTag}>
+				<StyledWrapper hasTag={hasTag} key={key}>
 					{tag && (
 						<StyledTagWrapper>
 							<ProminentText text={tag} />:
