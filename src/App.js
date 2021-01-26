@@ -12,19 +12,28 @@ class App extends Component {
 		super(props);
 
 		this.state = {
+			createModalIsOpen: false,
+			detailsModalIsOpen: Object.keys(checkSelectedMovie()).length !== 0,
 			favouriteMovieTitles: checkFavouriteMovies(),
-			isOpen: Object.keys(checkSelectedMovie()).length !== 0,
 			selectedMovieDetails: checkSelectedMovie(),
 		};
 	}
 
-	closeOnClickHandler = () => {
-		this.setState(() => ({ isOpen: false, selectedMovieDetails: {} }));
+	closeCreateOnClickHandler = () => {
+		this.setState(() => ({ createModalIsOpen: false }));
+	};
+
+	closePreviewOnClickHandler = () => {
+		this.setState(() => ({ detailsModalIsOpen: false, selectedMovieDetails: {} }));
 		updateSelectedMovie({});
 	};
 
-	previewOnClickHandler = (movie) => {
-		this.setState(() => ({ isOpen: true, selectedMovieDetails: movie }));
+	openCreateOnClickHandler = () => {
+		this.setState(() => ({ createModalIsOpen: true }));
+	};
+
+	openPreviewOnClickHandler = (movie) => {
+		this.setState(() => ({ detailsModalIsOpen: true, selectedMovieDetails: movie }));
 		updateSelectedMovie(movie);
 	};
 
@@ -44,7 +53,7 @@ class App extends Component {
 	};
 
 	render() {
-		const { favouriteMovieTitles, isOpen, selectedMovieDetails } = this.state;
+		const { createModalIsOpen, detailsModalIsOpen, favouriteMovieTitles, selectedMovieDetails } = this.state;
 		return (
 			<Router>
 				<Sidebar />
@@ -55,10 +64,13 @@ class App extends Component {
 						exact
 						component={() => (
 							<MoviesPage
-								closeOnClickHandler={this.closeOnClickHandler}
+								closeCreateOnClickHandler={this.closeCreateOnClickHandler}
+								closePreviewOnClickHandler={this.closePreviewOnClickHandler}
+								createModalIsOpen={createModalIsOpen}
+								detailsModalIsOpen={detailsModalIsOpen}
 								favouriteMovieTitles={favouriteMovieTitles}
-								isOpen={isOpen}
-								previewOnClickHandler={this.previewOnClickHandler}
+								openCreateOnClickHandler={this.openCreateOnClickHandler}
+								openPreviewOnClickHandler={this.openPreviewOnClickHandler}
 								selectedMovieDetails={selectedMovieDetails}
 								toggleFavouriteMovieOnClick={this.toggleFavouriteMovie}
 							/>
@@ -69,10 +81,10 @@ class App extends Component {
 						exact
 						component={() => (
 							<FavouritesPage
-								closeOnClickHandler={this.closeOnClickHandler}
+								closePreviewOnClickHandler={this.closePreviewOnClickHandler}
 								favouriteMovieTitles={favouriteMovieTitles}
-								isOpen={isOpen}
-								previewOnClickHandler={this.previewOnClickHandler}
+								detailsModalIsOpen={detailsModalIsOpen}
+								openPreviewOnClickHandler={this.openPreviewOnClickHandler}
 								selectedMovieDetails={selectedMovieDetails}
 								toggleFavouriteMovieOnClick={this.toggleFavouriteMovie}
 							/>

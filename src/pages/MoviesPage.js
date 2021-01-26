@@ -4,21 +4,28 @@ import { MoviesGallery, PageShell, Toolbar } from '../components';
 import { PageHeading } from '../typography';
 
 const MoviesPage = ({
-	closeOnClickHandler,
+	closeCreateOnClickHandler,
+	closePreviewOnClickHandler,
 	favouriteMovieTitles,
-	isOpen,
-	previewOnClickHandler,
+	createModalIsOpen,
+	openCreateOnClickHandler,
+	detailsModalIsOpen,
+	openPreviewOnClickHandler,
 	selectedMovieDetails,
 	toggleFavouriteMovieOnClick,
 }) => (
 	<PageShell>
 		<PageHeading text="Movies" />
-		<Toolbar />
+		<Toolbar
+			closeCreateOnClickHandler={closeCreateOnClickHandler}
+			createModalIsOpen={createModalIsOpen}
+			openCreateOnClickHandler={openCreateOnClickHandler}
+		/>
 		<MoviesGallery
-			closeOnClickHandler={closeOnClickHandler}
+			closePreviewOnClickHandler={closePreviewOnClickHandler}
 			favouriteMovieTitles={favouriteMovieTitles}
-			isOpen={isOpen}
-			previewOnClickHandler={previewOnClickHandler}
+			detailsModalIsOpen={detailsModalIsOpen}
+			openPreviewOnClickHandler={openPreviewOnClickHandler}
 			selectedMovieDetails={selectedMovieDetails}
 			toggleFavouriteMovieOnClick={toggleFavouriteMovieOnClick}
 		/>
@@ -26,10 +33,10 @@ const MoviesPage = ({
 );
 
 MoviesPage.propTypes = {
-	closeOnClickHandler: PropTypes.func.isRequired,
+	closePreviewOnClickHandler: PropTypes.func.isRequired,
 	favouriteMovieTitles: PropTypes.array.isRequired,
-	isOpen: PropTypes.bool.isRequired,
-	previewOnClickHandler: PropTypes.func.isRequired,
+	detailsModalIsOpen: PropTypes.bool.isRequired,
+	openPreviewOnClickHandler: PropTypes.func.isRequired,
 	selectedMovieDetails: PropTypes.object.isRequired,
 	toggleFavouriteMovieOnClick: PropTypes.func.isRequired,
 };

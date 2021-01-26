@@ -4,20 +4,20 @@ import { MoviesGallery, PageShell } from '../components';
 import { PageHeading } from '../typography';
 
 const FavouritesPage = ({
-	closeOnClickHandler,
+	closePreviewOnClickHandler,
 	favouriteMovieTitles,
-	isOpen,
-	previewOnClickHandler,
+	detailsModalIsOpen,
+	openPreviewOnClickHandler,
 	selectedMovieDetails,
 	toggleFavouriteMovieOnClick,
 }) => (
 	<PageShell>
 		<PageHeading text="Favourites" />
 		<MoviesGallery
-			closeOnClickHandler={closeOnClickHandler}
+			closePreviewOnClickHandler={closePreviewOnClickHandler}
 			favouriteMovieTitles={favouriteMovieTitles}
-			isOpen={isOpen}
-			previewOnClickHandler={previewOnClickHandler}
+			detailsModalIsOpen={detailsModalIsOpen}
+			openPreviewOnClickHandler={openPreviewOnClickHandler}
 			selectedMovieDetails={selectedMovieDetails}
 			showOnlyFavourites
 			toggleFavouriteMovieOnClick={toggleFavouriteMovieOnClick}
@@ -26,10 +26,10 @@ const FavouritesPage = ({
 );
 
 FavouritesPage.propTypes = {
-	closeOnClickHandler: PropTypes.func.isRequired,
+	closePreviewOnClickHandler: PropTypes.func.isRequired,
 	favouriteMovieTitles: PropTypes.array.isRequired,
-	isOpen: PropTypes.bool.isRequired,
-	previewOnClickHandler: PropTypes.func.isRequired,
+	detailsModalIsOpen: PropTypes.bool.isRequired,
+	openPreviewOnClickHandler: PropTypes.func.isRequired,
 	selectedMovieDetails: PropTypes.object.isRequired,
 	toggleFavouriteMovieOnClick: PropTypes.func.isRequired,
 };

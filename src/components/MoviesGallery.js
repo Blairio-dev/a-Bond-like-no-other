@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MovieModal, PreviewPanel } from '.';
+import { DetailsModal, PreviewPanel } from '.';
 import movies from '../data/movies.json';
 import styled from '@emotion/styled';
 
@@ -10,10 +10,10 @@ const StyledGrid = styled('div')`
 `;
 
 const MoviesGallery = ({
-	closeOnClickHandler,
+	closePreviewOnClickHandler,
 	favouriteMovieTitles,
-	isOpen,
-	previewOnClickHandler,
+	detailsModalIsOpen,
+	openPreviewOnClickHandler,
 	selectedMovieDetails,
 	showOnlyFavourites,
 	toggleFavouriteMovieOnClick,
@@ -23,23 +23,23 @@ const MoviesGallery = ({
 		: [...movies['Bond Films']];
 	return (
 		<StyledGrid>
-			{isOpen ? document.body.classList.add('modal-open') : document.body.classList.remove('modal-open')}
+			{detailsModalIsOpen ? document.body.classList.add('modal-open') : document.body.classList.remove('modal-open')}
 			{moviesList.map((movie) => (
 				<div key={movie.Film + movie['UK release date']}>
 					<PreviewPanel
 						actorName={movie['Bond Actor']}
 						imageUrl={movie.ImageURL}
 						movieName={movie.Film}
-						onClick={() => previewOnClickHandler(movie)}
+						onClick={() => openPreviewOnClickHandler(movie)}
 						ukReleaseDate={movie['UK release date']}
 					/>
 				</div>
 			))}
-			{isOpen && (
-				<MovieModal
-					closeOnClick={() => closeOnClickHandler()}
+			{detailsModalIsOpen && (
+				<DetailsModal
+					closeOnClick={() => closePreviewOnClickHandler()}
 					favouriteMovieTitles={favouriteMovieTitles}
-					isOpen={isOpen}
+					isOpen={detailsModalIsOpen}
 					selectedMovieDetails={selectedMovieDetails}
 					toggleFavouriteMovieOnClick={toggleFavouriteMovieOnClick}
 				/>
@@ -49,10 +49,10 @@ const MoviesGallery = ({
 };
 
 MoviesGallery.propTypes = {
-	closeOnClickHandler: PropTypes.func.isRequired,
+	closePreviewOnClickHandler: PropTypes.func.isRequired,
 	favouriteMovieTitles: PropTypes.array.isRequired,
-	isOpen: PropTypes.bool.isRequired,
-	previewOnClickHandler: PropTypes.func.isRequired,
+	detailsModalIsOpen: PropTypes.bool.isRequired,
+	openPreviewOnClickHandler: PropTypes.func.isRequired,
 	selectedMovieDetails: PropTypes.object.isRequired,
 	showOnlyFavourites: PropTypes.bool.isRequired,
 	toggleFavouriteMovieOnClick: PropTypes.func.isRequired,

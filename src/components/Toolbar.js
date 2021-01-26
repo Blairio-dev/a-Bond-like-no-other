@@ -2,6 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { ActionButton } from './ActionButton';
 import { Select } from './Select';
+import { CreateModal } from './CreateModal';
 
 const StyledWrapper = styled('div')`
 	background: hsl(0deg 0% 18%);
@@ -12,7 +13,7 @@ const StyledWrapper = styled('div')`
 	padding: 8px;
 `;
 
-const Toolbar = () => (
+const Toolbar = ({ closeCreateOnClickHandler, createModalIsOpen, openCreateOnClickHandler }) => (
 	<StyledWrapper>
 		<Select
 			id="filter-select"
@@ -20,7 +21,8 @@ const Toolbar = () => (
 			onChange={() => {}}
 			selectOptions={['None', 'Actor', 'Release Date']}
 		/>
-		<ActionButton labelText="Create" onClick={() => console.log('clicked')} />
+		<ActionButton labelText="Create" onClick={() => openCreateOnClickHandler()} />
+		{createModalIsOpen && <CreateModal closeOnClick={() => closeCreateOnClickHandler()} isOpen={createModalIsOpen} />}
 	</StyledWrapper>
 );
 
