@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import colours from '../assets/colours.json';
+import { colours } from '../assets/tokens';
 
 const StyledWrapper = styled('div')`
 	background-color: ${colours.darkGrey};

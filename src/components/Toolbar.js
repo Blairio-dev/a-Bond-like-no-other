@@ -3,14 +3,15 @@ import styled from '@emotion/styled';
 import { ActionButton } from './ActionButton';
 import { Select } from './Select';
 import { CreateModal } from './CreateModal';
+import { marginExternal, paddingInternalRegular } from '../assets/tokens';
 
 const StyledWrapper = styled('div')`
 	background: hsl(0deg 0% 18%);
 	border-radius: 4px;
 	display: flex;
 	justify-content: space-between;
-	margin-bottom: 16px;
-	padding: 8px;
+	${marginExternal}
+	${paddingInternalRegular}
 `;
 
 const Toolbar = ({ closeCreateOnClickHandler, createModalIsOpen, openCreateOnClickHandler }) => (

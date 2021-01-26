@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import colours from '../assets/colours.json';
+import { colours, marginExternal } from '../assets/tokens';
 import { ProminentText } from '../typography';
 
 const StyledButton = styled('button')`
@@ -9,6 +9,7 @@ const StyledButton = styled('button')`
 	border-radius: 8px;
 	color: hsl(0, 0%, 0%);
 	cursor: pointer;
+	${marginExternal}
 	padding: 8px 12px;
 	transition: transform 0.05s ease-out;
 	width: min-content;

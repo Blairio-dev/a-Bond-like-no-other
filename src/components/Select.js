@@ -1,19 +1,19 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ReactComponent as Chevron } from '../assets/chevron.svg';
+import { ReactComponent as Chevron } from '../assets/svgs/chevron.svg';
 import styled from '@emotion/styled';
 import { StandardLabel } from '../typography/StandardLabel';
-import colours from '../assets/colours.json';
+import { colours } from '../assets/tokens';
 
 const StyledIconWrapper = styled('div')`
 	svg {
 		fill: ${colours.white};
-		height: 22px;
+		height: 12px;
 		pointer-events: none;
 		position: absolute;
 		right: 8px;
 		speak: none;
-		top: 8px;
+		top: 13px;
 		width: 22px;
 	}
 `;
@@ -52,6 +52,7 @@ const StyledWrapper = styled('div')`
 	display: flex;
 	font-size: 16px;
 	font-weight: bold;
+	height: min-content;
 	position: relative;
 	width: fit-content;
 `;

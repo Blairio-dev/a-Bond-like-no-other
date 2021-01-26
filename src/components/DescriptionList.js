@@ -2,11 +2,12 @@ import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import { StandardText, ProminentText } from '../typography';
-import colours from '../assets/colours.json';
+import { colours, marginExternal } from '../assets/tokens';
 
 const StyledDescriptionList = styled('dl')`
 	color: ${colours.white};
 	margin: 0;
+	${marginExternal}
 `;
 
 const StyledTagWrapper = styled('span')`
@@ -16,6 +17,10 @@ const StyledTagWrapper = styled('span')`
 const StyledWrapper = styled('div')`
 	margin-bottom: 4px;
 	${(props) => !props.hasTag && 'margin-top: 16px;'}
+
+	:last-of-type {
+		margin-bottom: 0;
+	}
 `;
 
 const DescriptionList = ({ items }) => (

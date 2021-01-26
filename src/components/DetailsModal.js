@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { Title } from '../typography';
-import colours from '../assets/colours.json';
-import { ReactComponent as Star } from '../assets/star.svg';
+import { colours, marginExternal } from '../assets/tokens';
+import { ReactComponent as Star } from '../assets/svgs/star.svg';
 import { BaseModal, DescriptionList } from '../components';
 
 const StyledPoster = styled('img')`
 	border-radius: 2px;
-	margin-bottom: 16px;
+	${marginExternal}
 	transition: transform 0.1s ease-out;
 	width: 660px;
 `;
@@ -24,8 +24,8 @@ const StyledFavouriteButton = styled('button')`
 	svg {
 		height: 24px;
 		fill: ${(props) => (props.isFavouriteMovie ? colours.gold : 'hsl(0, 0%, 25%)')};
-		margin-bottom: 16px;
 		margin-right: 8px;
+		margin-bottom: 16px;
 		stroke: ${(props) => (props.isFavouriteMovie ? colours.gold : 'hsl(0, 0%, 25%)')};
 		stroke-width: 16px;
 		width: 24px;

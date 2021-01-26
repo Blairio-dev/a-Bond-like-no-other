@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { injectGlobal } from 'emotion';
-import colours from '../assets/colours.json';
+import { colours, marginExternal } from '../assets/tokens';
 import { Title } from '../typography';
+import { paddingInternalRegular } from '../assets/tokens';
 
 injectGlobal(`
 	.modal-open {
@@ -18,8 +19,7 @@ const StyledCloseButton = styled('button')`
 	color: hsl(0, 0%, 100%);
 	font-size: 16px;
 	font-weight: bold;
-	margin-bottom: 16px;
-	margin-left: 8px;
+	${marginExternal}
 
 	:focus,
 	:hover {
@@ -35,8 +35,8 @@ const StyledModal = styled('div')`
 	display: flex;
 	height: min-content;
 	flex-direction: column;
-	width: 660px;
-	padding: 16px;
+	${paddingInternalRegular}
+	width: 676px;
 `;
 
 const StyledTitleBar = styled('div')`

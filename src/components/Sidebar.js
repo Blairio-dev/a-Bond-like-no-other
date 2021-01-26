@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import styled from '@emotion/styled';
-import { ReactComponent as GoldFinger } from '../assets/gold-finger.svg';
-import colours from '../assets/colours.json';
+import { ReactComponent as GoldFinger } from '../assets/svgs/gold-finger.svg';
+import { colours } from '../assets/tokens';
 
 const StyledItem = styled('li')`
 	align-items: center;

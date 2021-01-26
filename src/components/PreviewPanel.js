@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { Title } from '../typography';
 import PropTypes from 'prop-types';
 import { DescriptionList } from './DescriptionList';
+import { marginExternal } from '../assets/tokens';
+import { Title } from '../typography';
 
 const StyledButton = styled('button')`
-	display: contents;
 	cursor: pointer;
+	display: contents;
 
 	:hover {
 		img {
@@ -17,7 +18,7 @@ const StyledButton = styled('button')`
 
 const StyledPoster = styled('img')`
 	border-radius: 2px;
-	margin-bottom: 16px;
+	${marginExternal}
 	transition: transform 0.1s ease-out;
 	width: 440px;
 `;
@@ -26,8 +27,6 @@ const StyledWrapper = styled('div')`
 	display: flex;
 	flex-direction: column;
 	flex: 1 0 15%;
-	margin-bottom: 16px;
-	margin-right: 16px;
 `;
 
 const PreviewPanel = ({ actorName, imageUrl, movieName, onClick, ukReleaseDate }) => (
