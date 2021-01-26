@@ -2,9 +2,10 @@ import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import { StandardText, ProminentText } from '../typography';
+import colours from '../assets/colours.json';
 
 const StyledDescriptionList = styled('dl')`
-	color: white;
+	color: ${colours.white};
 	margin: 0;
 `;
 

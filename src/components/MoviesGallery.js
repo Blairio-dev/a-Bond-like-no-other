@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MovieModal, PageShell, PreviewPanel } from '.';
+import { MovieModal, PreviewPanel } from '.';
 import movies from '../data/movies.json';
 import styled from '@emotion/styled';
-import { PageHeading } from '../typography';
 
 const StyledGrid = styled('div')`
 	display: flex;
@@ -23,32 +22,29 @@ const MoviesGallery = ({
 		? movies['Bond Films'].filter((movie) => favouriteMovieTitles.includes(movie.Film))
 		: [...movies['Bond Films']];
 	return (
-		<PageShell>
+		<StyledGrid>
 			{isOpen ? document.body.classList.add('modal-open') : document.body.classList.remove('modal-open')}
-			<PageHeading text="Movies" />
-			<StyledGrid>
-				{moviesList.map((movie) => (
-					<div key={movie.Film + movie['UK release date']}>
-						<PreviewPanel
-							actorName={movie['Bond Actor']}
-							imageUrl={movie.ImageURL}
-							movieName={movie.Film}
-							onClick={() => previewOnClickHandler(movie)}
-							ukReleaseDate={movie['UK release date']}
-						/>
-					</div>
-				))}
-				{isOpen && (
-					<MovieModal
-						closeOnClick={() => closeOnClickHandler()}
-						favouriteMovieTitles={favouriteMovieTitles}
-						isOpen={isOpen}
-						selectedMovieDetails={selectedMovieDetails}
-						toggleFavouriteMovieOnClick={toggleFavouriteMovieOnClick}
+			{moviesList.map((movie) => (
+				<div key={movie.Film + movie['UK release date']}>
+					<PreviewPanel
+						actorName={movie['Bond Actor']}
+						imageUrl={movie.ImageURL}
+						movieName={movie.Film}
+						onClick={() => previewOnClickHandler(movie)}
+						ukReleaseDate={movie['UK release date']}
 					/>
-				)}
-			</StyledGrid>
-		</PageShell>
+				</div>
+			))}
+			{isOpen && (
+				<MovieModal
+					closeOnClick={() => closeOnClickHandler()}
+					favouriteMovieTitles={favouriteMovieTitles}
+					isOpen={isOpen}
+					selectedMovieDetails={selectedMovieDetails}
+					toggleFavouriteMovieOnClick={toggleFavouriteMovieOnClick}
+				/>
+			)}
+		</StyledGrid>
 	);
 };
 

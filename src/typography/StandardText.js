@@ -2,14 +2,13 @@ import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 
-const StyledBody = styled('span')`
-	color: white;
+const StyledText = styled('span')`
 	font-size: 16px;
 	margin-bottom: 8px;
 	margin-top: 0;
 `;
 
-const StandardText = ({ text }) => <StyledBody>{text}</StyledBody>;
+const StandardText = ({ text }) => <StyledText>{text}</StyledText>;
 
 StandardText.propTypes = {
 	text: PropTypes.node.isRequired,

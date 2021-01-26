@@ -11,7 +11,7 @@ const StyledItem = styled('li')`
 	margin-bottom: 8px;
 
 	a {
-		color: ${(props) => (props.isCurrentPage ? colours.gold : 'white')};
+		color: ${(props) => (props.isCurrentPage ? colours.gold : colours.white)};
 		font-family: Lato, sans-serif;
 		font-size: 21px;
 		${(props) => props.isCurrentPage && `pointer-events: none;`};
@@ -23,15 +23,10 @@ const StyledItem = styled('li')`
 				? `
 			:hover,
 			:focus {
-				color: aqua;
 				outline: 0;
+				text-decoration: underline;
+				transition: none;
 			}
-		
-
-		:focus {
-			text-decoration: underline;
-			transition: none;
-		}
 		`
 				: `
 		:focus {
@@ -43,7 +38,7 @@ const StyledItem = styled('li')`
 	svg {
 		height: 14px;
 		margin-left: 8px;
-		width: 48px;
+		width: 34px;
 	}
 `;
 

@@ -26,7 +26,8 @@ const StyledWrapper = styled('div')`
 	display: flex;
 	flex-direction: column;
 	flex: 1 0 15%;
-	margin: 8px;
+	margin-bottom: 16px;
+	margin-right: 16px;
 `;
 
 const PreviewPanel = ({ actorName, imageUrl, movieName, onClick, ukReleaseDate }) => (

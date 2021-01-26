@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { MoviesGallery } from '../components';
+import { MoviesGallery, PageShell, Toolbar } from '../components';
+import { PageHeading } from '../typography';
 
 const MoviesPage = ({
 	closeOnClickHandler,
@@ -10,14 +11,18 @@ const MoviesPage = ({
 	selectedMovieDetails,
 	toggleFavouriteMovieOnClick,
 }) => (
-	<MoviesGallery
-		closeOnClickHandler={closeOnClickHandler}
-		favouriteMovieTitles={favouriteMovieTitles}
-		isOpen={isOpen}
-		previewOnClickHandler={previewOnClickHandler}
-		selectedMovieDetails={selectedMovieDetails}
-		toggleFavouriteMovieOnClick={toggleFavouriteMovieOnClick}
-	/>
+	<PageShell>
+		<PageHeading text="Movies" />
+		<Toolbar />
+		<MoviesGallery
+			closeOnClickHandler={closeOnClickHandler}
+			favouriteMovieTitles={favouriteMovieTitles}
+			isOpen={isOpen}
+			previewOnClickHandler={previewOnClickHandler}
+			selectedMovieDetails={selectedMovieDetails}
+			toggleFavouriteMovieOnClick={toggleFavouriteMovieOnClick}
+		/>
+	</PageShell>
 );
 
 MoviesPage.propTypes = {

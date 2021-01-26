@@ -17,14 +17,14 @@ const StyledCloseButton = styled('button')`
 	background: none;
 	border: 1px solid black;
 	border-radius: 8px;
-	color: hsl(0deg 0% 100%);
+	color: hsl(0, 0%, 100%);
 	font-size: 16px;
 	font-weight: bold;
 	margin-bottom: 16px;
 
 	:focus,
 	:hover {
-		background: hsl(0, 150%, 20%);
+		background: ${colours.red};
 		cursor: pointer;
 		outline: 0;
 	}
