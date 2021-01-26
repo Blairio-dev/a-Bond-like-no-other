@@ -22,7 +22,7 @@ const Toolbar = ({ closeCreateOnClickHandler, createModalIsOpen, openCreateOnCli
 			onChange={() => {}}
 			selectOptions={['None', 'Actor', 'Release Date']}
 		/>
-		<ActionButton labelText="Create" onClick={() => openCreateOnClickHandler()} />
+		<ActionButton.Primary labelText="Create" onClick={() => openCreateOnClickHandler()} />
 		{createModalIsOpen && <CreateModal closeOnClick={() => closeCreateOnClickHandler()} isOpen={createModalIsOpen} />}
 	</StyledWrapper>
 );

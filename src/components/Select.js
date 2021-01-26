@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { ReactComponent as Chevron } from '../assets/svgs/chevron.svg';
 import styled from '@emotion/styled';
-import { StandardLabel } from '../typography/StandardLabel';
+import { ReactComponent as Chevron } from '../assets/svgs/chevron.svg';
+import { StandardLabel } from '../typography';
 import { colours } from '../assets/tokens';
 
 const StyledIconWrapper = styled('div')`
@@ -40,7 +40,7 @@ const StyledSelect = styled('select')`
 
 	:focus,
 	:hover {
-		border-color: ${colours.red};
+		border-color: ${colours.gold};
 		cursor: pointer;
 		outline: 0;
 	}

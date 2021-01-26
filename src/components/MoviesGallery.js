@@ -12,6 +12,7 @@ const StyledGrid = styled('div')`
 const MoviesGallery = ({
 	closePreviewOnClickHandler,
 	favouriteMovieTitles,
+	createModalIsOpen,
 	detailsModalIsOpen,
 	openPreviewOnClickHandler,
 	selectedMovieDetails,
@@ -21,9 +22,10 @@ const MoviesGallery = ({
 	const moviesList = showOnlyFavourites
 		? movies['Bond Films'].filter((movie) => favouriteMovieTitles.includes(movie.Film))
 		: [...movies['Bond Films']];
+	const modalIsOpen = createModalIsOpen || detailsModalIsOpen;
 	return (
 		<StyledGrid>
-			{detailsModalIsOpen ? document.body.classList.add('modal-open') : document.body.classList.remove('modal-open')}
+			{modalIsOpen ? document.body.classList.add('modal-open') : document.body.classList.remove('modal-open')}
 			{moviesList.map((movie) => (
 				<div key={movie.Film + movie['UK release date']}>
 					<PreviewPanel
@@ -50,8 +52,9 @@ const MoviesGallery = ({
 
 MoviesGallery.propTypes = {
 	closePreviewOnClickHandler: PropTypes.func.isRequired,
-	favouriteMovieTitles: PropTypes.array.isRequired,
+	createModalIsOpen: PropTypes.bool,
 	detailsModalIsOpen: PropTypes.bool.isRequired,
+	favouriteMovieTitles: PropTypes.array.isRequired,
 	openPreviewOnClickHandler: PropTypes.func.isRequired,
 	selectedMovieDetails: PropTypes.object.isRequired,
 	showOnlyFavourites: PropTypes.bool.isRequired,
@@ -59,6 +62,8 @@ MoviesGallery.propTypes = {
 };
 
 MoviesGallery.defaultProps = {
+	createModalIsOpen: false,
+	detailsModalIsOpen: false,
 	showOnlyFavourites: false,
 };
 

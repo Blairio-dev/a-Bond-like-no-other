@@ -17,7 +17,7 @@ const StyledButton = styled('button')`
 `;
 
 const StyledPoster = styled('img')`
-	border-radius: 2px;
+	border-radius: 4px;
 	${marginExternal}
 	transition: transform 0.1s ease-out;
 	width: 440px;

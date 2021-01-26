@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 
 const StyledText = styled('label')`
-	font-size: 16px;
+	font-size: 18px;
 	font-weight: bold;
 	margin-right: 8px;
 	margin-top: 0;

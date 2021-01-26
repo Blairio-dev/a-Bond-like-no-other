@@ -7,4 +7,5 @@ export { PageShell } from './PageShell.js';
 export { PreviewPanel } from './PreviewPanel';
 export { Select } from './Select';
 export { Sidebar } from './Sidebar';
+export { TextInput } from './TextInput';
 export { Toolbar } from './Toolbar';

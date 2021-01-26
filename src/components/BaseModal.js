@@ -32,6 +32,7 @@ const StyledCloseButton = styled('button')`
 const StyledModal = styled('div')`
 	background: hsl(0deg 0% 0%);
 	border: 2px solid ${colours.gold};
+	border-radius: 8px;
 	display: flex;
 	height: min-content;
 	flex-direction: column;
@@ -59,7 +60,6 @@ const StyledWrapper = styled('div')`
 
 const BaseModal = ({ children, closeOnClick, isOpen, title }) => {
 	const isTitleString = typeof title === 'string';
-	console.log(isTitleString);
 	return (
 		<StyledWrapper isOpen={isOpen}>
 			<StyledModal>

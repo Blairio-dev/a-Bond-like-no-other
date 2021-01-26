@@ -1,13 +1,14 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { colours, marginExternal } from '../assets/tokens';
 import { ProminentText } from '../typography';
 
 const StyledButton = styled('button')`
-	background: ${colours.gold};
-	border: none;
+	background: ${(props) => (props.displayType === 'primary' ? colours.gold : colours.black)};
+	border: 2px solid ${colours.gold};
 	border-radius: 8px;
-	color: hsl(0, 0%, 0%);
+	color: ${(props) => (props.displayType === 'primary' ? colours.black : colours.gold)};
 	cursor: pointer;
 	${marginExternal}
 	padding: 8px 12px;
@@ -16,17 +17,63 @@ const StyledButton = styled('button')`
 
 	:focus,
 	:hover {
-		transform: scale(1.05);
 		outline: 0;
+		transform: scale(1.05);
 	}
 `;
 
-const ActionButton = ({ labelText, onClick }) => (
-	<StyledButton onClick={onClick}>
+const basePropTypes = {
+	onClick: PropTypes.func.isRequired,
+};
+
+const Base = ({ displayType, labelText, onClick, willSubmitForm }) => (
+	<StyledButton displayType={displayType} onClick={onClick} type={willSubmitForm ? 'submit' : 'button'}>
 		<ProminentText text={labelText} />{' '}
 	</StyledButton>
 );
 
-ActionButton.propTypes = {};
+Base.propTypes = {
+	...basePropTypes,
+	displayType: PropTypes.oneOf(['primary', 'secondary']).isRequired,
+	labelText: PropTypes.string.isRequired,
+	willSubmitForm: PropTypes.bool,
+};
+
+Base.defaultProps = {
+	willSubmitForm: false,
+};
+
+const Primary = ({ labelText, onClick }) => <Base displayType="primary" labelText={labelText} onClick={onClick} />;
+
+Primary.propTypes = {
+	...basePropTypes,
+	labelText: PropTypes.string.isRequired,
+};
+
+const Secondary = ({ labelText, onClick }) => <Base displayType="secondary" labelText={labelText} onClick={onClick} />;
+
+Secondary.propTypes = {
+	...basePropTypes,
+	labelText: PropTypes.string.isRequired,
+};
+
+const Submit = ({ labelText, onClick }) => (
+	<Base displayType="primary" labelText={labelText} onClick={onClick} willSubmitForm />
+);
+
+Submit.propTypes = {
+	...basePropTypes,
+	labelText: PropTypes.string,
+};
+
+Submit.defaultProps = {
+	labelText: 'Submit',
+};
+
+const ActionButton = {
+	Primary,
+	Secondary,
+	Submit,
+};
 
 export { ActionButton };

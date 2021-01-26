@@ -23,8 +23,9 @@ const MoviesPage = ({
 		/>
 		<MoviesGallery
 			closePreviewOnClickHandler={closePreviewOnClickHandler}
-			favouriteMovieTitles={favouriteMovieTitles}
+			createModalIsOpen={createModalIsOpen}
 			detailsModalIsOpen={detailsModalIsOpen}
+			favouriteMovieTitles={favouriteMovieTitles}
 			openPreviewOnClickHandler={openPreviewOnClickHandler}
 			selectedMovieDetails={selectedMovieDetails}
 			toggleFavouriteMovieOnClick={toggleFavouriteMovieOnClick}
