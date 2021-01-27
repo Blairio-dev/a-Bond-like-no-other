@@ -19,6 +19,7 @@ const Toolbar = ({
 	closeCreateOnClickHandler,
 	createModalIsOpen,
 	createMovieOnClickHandler,
+	moviesList,
 	openCreateOnClickHandler,
 }) => (
 	<StyledWrapper>
@@ -33,6 +34,7 @@ const Toolbar = ({
 			<CreateModal
 				closeOnClick={() => closeCreateOnClickHandler()}
 				createMovieOnClickHandler={createMovieOnClickHandler}
+				moviesList={moviesList}
 				isOpen={createModalIsOpen}
 			/>
 		)}
@@ -41,6 +43,7 @@ const Toolbar = ({
 
 Toolbar.propTypes = {
 	createMovieOnClickHandler: PropTypes.func.isRequired,
+	moviesList: PropTypes.array.isRequired,
 };
 
 export { Toolbar };

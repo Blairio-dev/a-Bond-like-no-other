@@ -70,7 +70,7 @@ const DetailsModal = ({
 			<DescriptionList
 				items={[
 					{ tag: 'Release Date (UK)', description: ukReleaseDate },
-					{ tag: 'Box Office (£ Millions)', description: boxOfficeTakings },
+					{ tag: 'Box Office (Millions)', description: boxOfficeTakings },
 					{ tag: 'Actor', description: actorName },
 					{ description: description },
 				]}

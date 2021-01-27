@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import { ActionButton, BaseModal, DateInput, NumberInput, TextInput, URLInput } from '../components';
+import { ActionButton, BaseModal, DateInput, NumberInput, TextArea, TextInput, URLInput } from '../components';
 import { colours, marginExternal } from '../assets/tokens';
+import moment from 'moment';
 
 const StyledForm = styled('form')`
 	color: ${colours.white};
@@ -35,7 +36,11 @@ const StyledSubmit = styled('input')`
 	}
 `;
 
-// const formatDate = (date) => date.split('-');
+const formatReleaseDate = (movieDetails) => {
+	var formattedReleaseDate = moment(movieDetails['UK release date']).format('D MMMM YYYY');
+	movieDetails['UK release date'] = formattedReleaseDate;
+	return movieDetails;
+};
 
 class CreateModal extends Component {
 	constructor(props) {
@@ -60,13 +65,19 @@ class CreateModal extends Component {
 	};
 
 	render() {
-		const { closeOnClick, createMovieOnClickHandler, isOpen } = this.props;
+		const { closeOnClick, createMovieOnClickHandler, isOpen, moviesList } = this.props;
 		const { movieDetails } = this.state;
+
+		const isExistingMovie = (movieName) => !!!moviesList.find((movieObj) => movieObj.Film === movieName);
 
 		return (
 			<BaseModal closeOnClick={closeOnClick} isOpen={isOpen} title="Create Movie">
-				<StyledForm onSubmit={() => createMovieOnClickHandler(movieDetails)}>
+				<StyledForm onSubmit={() => createMovieOnClickHandler(formatReleaseDate(movieDetails))}>
 					<TextInput
+						customValidation={{
+							checkIsValid: isExistingMovie,
+							validationMessage: 'Movie already exists.',
+						}}
 						labelText="Movie"
 						id="movie-name-input"
 						isRequired
@@ -101,7 +112,7 @@ class CreateModal extends Component {
 						onChange={({ value }) => this.onChangeHandler('ImageURL', value)}
 						value={movieDetails.ImageURL}
 					/>
-					<TextInput
+					<TextArea
 						labelText="Description"
 						id="description-input"
 						isRequired
@@ -121,6 +132,7 @@ class CreateModal extends Component {
 CreateModal.propTypes = {
 	closeOnClick: PropTypes.func.isRequired,
 	createMovieOnClickHandler: PropTypes.func.isRequired,
+	moviesList: PropTypes.array.isRequired,
 	isOpen: PropTypes.bool.isRequired,
 };
 

@@ -22,6 +22,7 @@ const MoviesPage = ({
 			closeCreateOnClickHandler={closeCreateOnClickHandler}
 			createModalIsOpen={createModalIsOpen}
 			createMovieOnClickHandler={createMovieOnClickHandler}
+			moviesList={moviesList}
 			openCreateOnClickHandler={openCreateOnClickHandler}
 		/>
 		<MoviesGallery

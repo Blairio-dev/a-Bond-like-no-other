@@ -10,6 +10,7 @@ export { PageShell } from './PageShell.js';
 export { PreviewPanel } from './PreviewPanel';
 export { Select } from './Select';
 export { Sidebar } from './Sidebar';
+export { TextArea } from './TextArea';
 export { TextInput } from './TextInput';
 export { URLInput } from './URLInput';
 export { Toolbar } from './Toolbar';
