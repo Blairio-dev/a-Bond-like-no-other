@@ -7,6 +7,7 @@ const FavouritesPage = ({
 	closePreviewOnClickHandler,
 	favouriteMovieTitles,
 	detailsModalIsOpen,
+	moviesList,
 	openPreviewOnClickHandler,
 	selectedMovieDetails,
 	toggleFavouriteMovieOnClick,
@@ -17,6 +18,7 @@ const FavouritesPage = ({
 			closePreviewOnClickHandler={closePreviewOnClickHandler}
 			favouriteMovieTitles={favouriteMovieTitles}
 			detailsModalIsOpen={detailsModalIsOpen}
+			moviesList={moviesList}
 			openPreviewOnClickHandler={openPreviewOnClickHandler}
 			selectedMovieDetails={selectedMovieDetails}
 			showOnlyFavourites
@@ -29,6 +31,7 @@ FavouritesPage.propTypes = {
 	closePreviewOnClickHandler: PropTypes.func.isRequired,
 	favouriteMovieTitles: PropTypes.array.isRequired,
 	detailsModalIsOpen: PropTypes.bool.isRequired,
+	moviesList: PropTypes.array.isRequired,
 	openPreviewOnClickHandler: PropTypes.func.isRequired,
 	selectedMovieDetails: PropTypes.object.isRequired,
 	toggleFavouriteMovieOnClick: PropTypes.func.isRequired,

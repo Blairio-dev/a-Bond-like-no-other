@@ -1,11 +1,15 @@
 export { ActionButton } from './ActionButton.js';
+export { BaseInput } from './BaseInput';
 export { BaseModal } from './BaseModal';
+export { DateInput } from './DateInput';
 export { DescriptionList } from './DescriptionList.js';
-export { MoviesGallery } from './MoviesGallery';
 export { DetailsModal } from './DetailsModal';
+export { MoviesGallery } from './MoviesGallery';
+export { NumberInput } from './NumberInput';
 export { PageShell } from './PageShell.js';
 export { PreviewPanel } from './PreviewPanel';
 export { Select } from './Select';
 export { Sidebar } from './Sidebar';
 export { TextInput } from './TextInput';
+export { URLInput } from './URLInput';
 export { Toolbar } from './Toolbar';

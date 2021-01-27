@@ -6,10 +6,12 @@ import { PageHeading } from '../typography';
 const MoviesPage = ({
 	closeCreateOnClickHandler,
 	closePreviewOnClickHandler,
-	favouriteMovieTitles,
 	createModalIsOpen,
-	openCreateOnClickHandler,
+	createMovieOnClickHandler,
 	detailsModalIsOpen,
+	favouriteMovieTitles,
+	moviesList,
+	openCreateOnClickHandler,
 	openPreviewOnClickHandler,
 	selectedMovieDetails,
 	toggleFavouriteMovieOnClick,
@@ -19,6 +21,7 @@ const MoviesPage = ({
 		<Toolbar
 			closeCreateOnClickHandler={closeCreateOnClickHandler}
 			createModalIsOpen={createModalIsOpen}
+			createMovieOnClickHandler={createMovieOnClickHandler}
 			openCreateOnClickHandler={openCreateOnClickHandler}
 		/>
 		<MoviesGallery
@@ -26,6 +29,7 @@ const MoviesPage = ({
 			createModalIsOpen={createModalIsOpen}
 			detailsModalIsOpen={detailsModalIsOpen}
 			favouriteMovieTitles={favouriteMovieTitles}
+			moviesList={moviesList}
 			openPreviewOnClickHandler={openPreviewOnClickHandler}
 			selectedMovieDetails={selectedMovieDetails}
 			toggleFavouriteMovieOnClick={toggleFavouriteMovieOnClick}
@@ -35,8 +39,10 @@ const MoviesPage = ({
 
 MoviesPage.propTypes = {
 	closePreviewOnClickHandler: PropTypes.func.isRequired,
+	createMovieOnClickHandler: PropTypes.func.isRequired,
 	favouriteMovieTitles: PropTypes.array.isRequired,
 	detailsModalIsOpen: PropTypes.bool.isRequired,
+	moviesList: PropTypes.array.isRequired,
 	openPreviewOnClickHandler: PropTypes.func.isRequired,
 	selectedMovieDetails: PropTypes.object.isRequired,
 	toggleFavouriteMovieOnClick: PropTypes.func.isRequired,

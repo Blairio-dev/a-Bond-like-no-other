@@ -6,6 +6,7 @@ import { updateSelectedMovie } from './data/SessionStorageWriter';
 import { checkSelectedMovie } from './data/SessionStorageReader';
 import { updateFavouriteMovies } from './data/LocalStorageWriter';
 import { checkFavouriteMovies } from './data/LocalStorageReader';
+import movies from './data/movies.json';
 
 class App extends Component {
 	constructor(props) {
@@ -15,9 +16,16 @@ class App extends Component {
 			createModalIsOpen: false,
 			detailsModalIsOpen: Object.keys(checkSelectedMovie()).length !== 0,
 			favouriteMovieTitles: checkFavouriteMovies(),
+			moviesList: movies['Bond Films'],
 			selectedMovieDetails: checkSelectedMovie(),
 		};
 	}
+
+	createMovieOnClickHandler = (newMovie) => {
+		const newMoviesList = this.state.moviesList.concat(newMovie);
+		console.log(newMoviesList);
+		this.setState(() => ({ moviesList: newMoviesList }));
+	};
 
 	closeCreateOnClickHandler = () => {
 		this.setState(() => ({ createModalIsOpen: false }));
@@ -53,7 +61,7 @@ class App extends Component {
 	};
 
 	render() {
-		const { createModalIsOpen, detailsModalIsOpen, favouriteMovieTitles, selectedMovieDetails } = this.state;
+		const { createModalIsOpen, detailsModalIsOpen, favouriteMovieTitles, moviesList, selectedMovieDetails } = this.state;
 		return (
 			<Router>
 				<Sidebar />
@@ -66,9 +74,11 @@ class App extends Component {
 							<MoviesPage
 								closeCreateOnClickHandler={this.closeCreateOnClickHandler}
 								closePreviewOnClickHandler={this.closePreviewOnClickHandler}
+								createMovieOnClickHandler={this.createMovieOnClickHandler}
 								createModalIsOpen={createModalIsOpen}
 								detailsModalIsOpen={detailsModalIsOpen}
 								favouriteMovieTitles={favouriteMovieTitles}
+								moviesList={moviesList}
 								openCreateOnClickHandler={this.openCreateOnClickHandler}
 								openPreviewOnClickHandler={this.openPreviewOnClickHandler}
 								selectedMovieDetails={selectedMovieDetails}
@@ -84,6 +94,7 @@ class App extends Component {
 								closePreviewOnClickHandler={this.closePreviewOnClickHandler}
 								favouriteMovieTitles={favouriteMovieTitles}
 								detailsModalIsOpen={detailsModalIsOpen}
+								moviesList={moviesList}
 								openPreviewOnClickHandler={this.openPreviewOnClickHandler}
 								selectedMovieDetails={selectedMovieDetails}
 								toggleFavouriteMovieOnClick={this.toggleFavouriteMovie}

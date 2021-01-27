@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { ActionButton } from './ActionButton';
 import { Select } from './Select';
@@ -14,7 +15,12 @@ const StyledWrapper = styled('div')`
 	${paddingInternalRegular}
 `;
 
-const Toolbar = ({ closeCreateOnClickHandler, createModalIsOpen, openCreateOnClickHandler }) => (
+const Toolbar = ({
+	closeCreateOnClickHandler,
+	createModalIsOpen,
+	createMovieOnClickHandler,
+	openCreateOnClickHandler,
+}) => (
 	<StyledWrapper>
 		<Select
 			id="filter-select"
@@ -23,10 +29,18 @@ const Toolbar = ({ closeCreateOnClickHandler, createModalIsOpen, openCreateOnCli
 			selectOptions={['None', 'Actor', 'Release Date']}
 		/>
 		<ActionButton.Primary labelText="Create" onClick={() => openCreateOnClickHandler()} />
-		{createModalIsOpen && <CreateModal closeOnClick={() => closeCreateOnClickHandler()} isOpen={createModalIsOpen} />}
+		{createModalIsOpen && (
+			<CreateModal
+				closeOnClick={() => closeCreateOnClickHandler()}
+				createMovieOnClickHandler={createMovieOnClickHandler}
+				isOpen={createModalIsOpen}
+			/>
+		)}
 	</StyledWrapper>
 );
 
-Toolbar.propTypes = {};
+Toolbar.propTypes = {
+	createMovieOnClickHandler: PropTypes.func.isRequired,
+};
 
 export { Toolbar };

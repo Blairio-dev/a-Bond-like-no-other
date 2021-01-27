@@ -27,8 +27,8 @@ const basePropTypes = {
 };
 
 const Base = ({ displayType, labelText, onClick, willSubmitForm }) => (
-	<StyledButton displayType={displayType} onClick={onClick} type={willSubmitForm ? 'submit' : 'button'}>
-		<ProminentText text={labelText} />{' '}
+	<StyledButton displayType={displayType} onClick={onClick}>
+		<ProminentText text={labelText} />
 	</StyledButton>
 );
 
@@ -36,11 +36,6 @@ Base.propTypes = {
 	...basePropTypes,
 	displayType: PropTypes.oneOf(['primary', 'secondary']).isRequired,
 	labelText: PropTypes.string.isRequired,
-	willSubmitForm: PropTypes.bool,
-};
-
-Base.defaultProps = {
-	willSubmitForm: false,
 };
 
 const Primary = ({ labelText, onClick }) => <Base displayType="primary" labelText={labelText} onClick={onClick} />;
@@ -57,23 +52,9 @@ Secondary.propTypes = {
 	labelText: PropTypes.string.isRequired,
 };
 
-const Submit = ({ labelText, onClick }) => (
-	<Base displayType="primary" labelText={labelText} onClick={onClick} willSubmitForm />
-);
-
-Submit.propTypes = {
-	...basePropTypes,
-	labelText: PropTypes.string,
-};
-
-Submit.defaultProps = {
-	labelText: 'Submit',
-};
-
 const ActionButton = {
 	Primary,
 	Secondary,
-	Submit,
 };
 
 export { ActionButton };
