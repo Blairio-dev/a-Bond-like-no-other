@@ -4,8 +4,8 @@ import { HomePage, MoviesPage, FavouritesPage } from './pages';
 import { Sidebar } from './components';
 import { updateSelectedMovie } from './data/SessionStorageWriter';
 import { checkSelectedMovie } from './data/SessionStorageReader';
-import { updateFavouriteMovies } from './data/LocalStorageWriter';
-import { checkFavouriteMovies } from './data/LocalStorageReader';
+import { updateCustomMovies, updateFavouriteMovies } from './data/LocalStorageWriter';
+import { checkCustomMovies, checkFavouriteMovies } from './data/LocalStorageReader';
 import movies from './data/movies.json';
 
 class App extends Component {
@@ -14,17 +14,20 @@ class App extends Component {
 
 		this.state = {
 			createModalIsOpen: false,
+			customMovies: checkCustomMovies(),
 			detailsModalIsOpen: Object.keys(checkSelectedMovie()).length !== 0,
 			favouriteMovieTitles: checkFavouriteMovies(),
-			moviesList: movies['Bond Films'],
+			moviesList: movies['Bond Films'].concat(checkCustomMovies()),
 			selectedMovieDetails: checkSelectedMovie(),
 		};
 	}
 
 	createMovieOnClickHandler = (newMovie) => {
-		const newMoviesList = this.state.moviesList.concat(newMovie);
-		console.log(newMoviesList);
-		this.setState(() => ({ moviesList: newMoviesList }));
+		const newCustomMoviesList = this.state.customMovies.concat(newMovie);
+		const newMoviesList = movies['Bond Films'].concat(newCustomMoviesList);
+		this.setState(() => ({ customMovies: newCustomMoviesList, moviesList: newMoviesList }));
+		this.closeCreateOnClickHandler();
+		updateCustomMovies(newCustomMoviesList);
 	};
 
 	closeCreateOnClickHandler = () => {
