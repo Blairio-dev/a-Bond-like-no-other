@@ -19,9 +19,11 @@ const StyledGrid = styled('div')`
 `;
 
 const MoviesGallery = ({
+	actorFilter,
 	closePreviewOnClickHandler,
 	favouriteMovieTitles,
 	createModalIsOpen,
+	currentFilter,
 	dateFilter,
 	detailsModalIsOpen,
 	moviesList,
@@ -35,10 +37,12 @@ const MoviesGallery = ({
 			return showOnlyFavourites
 				? moviesList.filter((movie) => favouriteMovieTitles.includes(movie.Film))
 				: [...moviesList];
+		} else if (currentFilter === 'Actor') {
+			return actorFilter === 'None' ? [...moviesList] : moviesList.filter((movie) => movie['Bond Actor'] === actorFilter);
 		} else {
-			return dateFilter.from !== '' && dateFilter.to !== ''
-				? moviesList.filter((movie) => isInRange(movie['UK release date'], dateFilter))
-				: [...moviesList];
+			return dateFilter.from === '' && dateFilter.to === ''
+				? [...moviesList]
+				: moviesList.filter((movie) => isInRange(movie['UK release date'], dateFilter));
 		}
 	};
 	const modalIsOpen = createModalIsOpen || detailsModalIsOpen;
@@ -73,8 +77,10 @@ const MoviesGallery = ({
 };
 
 MoviesGallery.propTypes = {
+	actorFilter: PropTypes.string,
 	closePreviewOnClickHandler: PropTypes.func.isRequired,
 	createModalIsOpen: PropTypes.bool,
+	currentFilter: PropTypes.string.isRequired,
 	dateFilter: PropTypes.shape({
 		from: PropTypes.string.isRequired,
 		to: PropTypes.string.isRequired,

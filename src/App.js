@@ -8,21 +8,27 @@ import { updateCustomMovies, updateFavouriteMovies } from './data/LocalStorageWr
 import { checkCustomMovies, checkFavouriteMovies } from './data/LocalStorageReader';
 import movies from './data/movies.json';
 
+const intitalCustomMovies = checkCustomMovies();
+const initialMoviesList = movies['Bond Films'].concat(intitalCustomMovies);
+const initialActorsList = [...new Set(initialMoviesList.map((movie) => movie['Bond Actor']))];
+
 class App extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
+			actorsList: initialActorsList,
+			actorFilter: 'None',
 			createModalIsOpen: false,
 			currentFilter: 'None',
-			customMovies: checkCustomMovies(),
+			customMovies: intitalCustomMovies,
 			dateFilter: {
 				from: '',
 				to: '',
 			},
 			detailsModalIsOpen: Object.keys(checkSelectedMovie()).length !== 0,
 			favouriteMovieTitles: checkFavouriteMovies(),
-			moviesList: movies['Bond Films'].concat(checkCustomMovies()),
+			moviesList: initialMoviesList,
 			selectedMovieDetails: checkSelectedMovie(),
 		};
 	}
@@ -30,7 +36,14 @@ class App extends Component {
 	createMovieOnClickHandler = (newMovie) => {
 		const newCustomMoviesList = this.state.customMovies.concat(newMovie);
 		const newMoviesList = movies['Bond Films'].concat(newCustomMoviesList);
-		this.setState(() => ({ customMovies: newCustomMoviesList, moviesList: newMoviesList }));
+		const newActorsList = this.state.actorsList;
+		newActorsList.push(newMovie['Bond Actor']);
+		const noDupesNewActorsList = [...new Set(newActorsList)];
+		this.setState(() => ({
+			actorsList: noDupesNewActorsList,
+			customMovies: newCustomMoviesList,
+			moviesList: newMoviesList,
+		}));
 		this.closeCreateOnClickHandler();
 		updateCustomMovies(newCustomMoviesList);
 	};
@@ -48,6 +61,10 @@ class App extends Component {
 		const updatedDateFilter = Object.assign({}, this.state.dateFilter);
 		updatedDateFilter[isFrom ? 'from' : 'to'] = value;
 		this.setState(() => ({ dateFilter: updatedDateFilter }));
+	};
+
+	filterActorOnChangeHandler = (event) => {
+		this.setState(() => ({ actorFilter: event.target.value }));
 	};
 
 	filterSelectOnChangeHandler = (event) => {
@@ -80,6 +97,8 @@ class App extends Component {
 
 	render() {
 		const {
+			actorsList,
+			actorFilter,
 			createModalIsOpen,
 			currentFilter,
 			dateFilter,
@@ -98,6 +117,8 @@ class App extends Component {
 						exact
 						component={() => (
 							<MoviesPage
+								actorFilter={actorFilter}
+								actorsList={actorsList}
 								closeCreateOnClickHandler={this.closeCreateOnClickHandler}
 								closePreviewOnClickHandler={this.closePreviewOnClickHandler}
 								createMovieOnClickHandler={this.createMovieOnClickHandler}
@@ -106,6 +127,7 @@ class App extends Component {
 								dateFilter={dateFilter}
 								detailsModalIsOpen={detailsModalIsOpen}
 								favouriteMovieTitles={favouriteMovieTitles}
+								filterActorOnChangeHandler={this.filterActorOnChangeHandler}
 								filterDateOnChangeHandler={this.filterDateOnChangeHandler}
 								filterSelectOnChangeHandler={this.filterSelectOnChangeHandler}
 								moviesList={moviesList}

@@ -27,11 +27,14 @@ const StyledWrapper = styled('div')`
 	${paddingInternalRegular}
 `;
 const Toolbar = ({
+	actorFilter,
+	actorsList,
 	closeCreateOnClickHandler,
 	createModalIsOpen,
 	createMovieOnClickHandler,
 	currentFilter,
 	dateFilter,
+	filterActorOnChangeHandler,
 	filterDateOnChangeHandler,
 	filterSelectOnChangeHandler,
 	moviesList,
@@ -46,7 +49,16 @@ const Toolbar = ({
 				selectedOption={currentFilter}
 				selectOptions={['None', 'Actor', 'Release Date']}
 			/>
-			{currentFilter === 'Actor' && <span>Actor filter</span>}
+			{currentFilter === 'Actor' && (
+				<Select
+					id="actor-filter-select"
+					isSecondary
+					labelText="Actors:"
+					onChange={(event) => filterActorOnChangeHandler(event)}
+					selectedOption={actorFilter}
+					selectOptions={['None', ...actorsList]}
+				/>
+			)}
 			{currentFilter === 'Release Date' && (
 				<StyledDateFilterWrapper>
 					<DateInput
@@ -59,7 +71,7 @@ const Toolbar = ({
 					/>
 					<DateInput
 						labelText="To"
-						id="release-date-filter-from-input"
+						id="release-date-filter-to-input"
 						onChange={({ value }) => filterDateOnChangeHandler(value)}
 						isRequired
 						isRow
@@ -81,6 +93,8 @@ const Toolbar = ({
 );
 
 Toolbar.propTypes = {
+	actorFilter: PropTypes.string.isRequired,
+	actorsList: PropTypes.array.isRequired,
 	closeCreateOnClickHandler: PropTypes.func.isRequired,
 	createModalIsOpen: PropTypes.bool.isRequired,
 	createMovieOnClickHandler: PropTypes.func.isRequired,
@@ -89,6 +103,7 @@ Toolbar.propTypes = {
 		from: PropTypes.string.isRequired,
 		to: PropTypes.string.isRequired,
 	}).isRequired,
+	filterActorOnChangeHandler: PropTypes.func.isRequired,
 	filterDateOnChangeHandler: PropTypes.func.isRequired,
 	filterSelectOnChangeHandler: PropTypes.func.isRequired,
 	moviesList: PropTypes.array.isRequired,

@@ -5,9 +5,9 @@ import { ReactComponent as Chevron } from '../assets/svgs/chevron.svg';
 import { StandardLabel } from '../typography';
 import { colours, marginExternal } from '../assets/tokens';
 
-const StyledIconWrapper = styled('div')`
+const StyledIconWrapper = styled('span')`
 	svg {
-		fill: ${colours.white};
+		fill: ${(props) => (props.isSecondary ? colours.white : colours.black)};
 		height: 12px;
 		pointer-events: none;
 		position: absolute;
@@ -27,42 +27,44 @@ const StyledFlexWrapper = styled('div')`
 
 const StyledSelect = styled('select')`
 	appearance: none;
-	background-color: ${colours.black};
-	border: 2px solid ${colours.black};
+	background-color: ${(props) => (props.isSecondary ? colours.black : colours.gold)};
+	border: 2px solid ${(props) => (props.isSecondary ? colours.gold : colours.black)};
 	border-radius: 4px;
-	color: inherit;
-	font-family: inherit;
-	font-size: inherit;
-	font-weight: normal;
+	color: ${(props) => (props.isSecondary ? colours.white : colours.black)};
+	font-size: 16px;
+	font-weight: bold;
 	line-height: 24px;
 	padding: 4px 8px;
 	padding-right: 40px;
+	transition: transform 0.05s ease-out;
 
 	:focus,
 	:hover {
-		border-color: ${colours.gold};
 		cursor: pointer;
 		outline: 0;
-	}
+		transform: scale(1.05);
+		~ span {
+			svg {
+				transform: scale(1.05);
+			}
+		}
 `;
 
 const StyledWrapper = styled('div')`
 	align-items: center;
 	color: ${colours.white};
 	display: flex;
-	font-size: 16px;
-	font-weight: bold;
 	height: min-content;
 	${marginExternal}
 	position: relative;
 	width: fit-content;
 `;
 
-const Select = ({ id, labelText, onChange, selectedOption, selectOptions }) => (
+const Select = ({ id, isSecondary, labelText, onChange, selectedOption, selectOptions }) => (
 	<StyledWrapper>
 		<StyledFlexWrapper>
 			<StandardLabel htmlFor={id} text={labelText} />
-			<StyledSelect id={id} value={selectedOption} onChange={onChange}>
+			<StyledSelect id={id} isSecondary={isSecondary} onChange={onChange} value={selectedOption}>
 				{selectOptions.map((item, index) => {
 					const key = `${id}-${index}`;
 					return (
@@ -72,16 +74,17 @@ const Select = ({ id, labelText, onChange, selectedOption, selectOptions }) => (
 					);
 				})}
 			</StyledSelect>
+			<StyledIconWrapper isSecondary={isSecondary}>
+				<Chevron />
+			</StyledIconWrapper>
 		</StyledFlexWrapper>
-		<StyledIconWrapper>
-			<Chevron />
-		</StyledIconWrapper>
 	</StyledWrapper>
 );
 
 Select.propTypes = {
 	/** Unique string id. */
 	id: PropTypes.string,
+	isSecondary: PropTypes.bool,
 	/** Label text. */
 	labelText: PropTypes.string,
 	/** Callback function triggered on change. */
@@ -90,6 +93,9 @@ Select.propTypes = {
 	selectedOption: PropTypes.string.isRequired,
 	/** Array of string options. */
 	selectOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+Select.defaultProps = {
+	isSecondary: false,
 };
 
 export { Select };

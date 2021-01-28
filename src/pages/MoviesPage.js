@@ -4,6 +4,8 @@ import { MoviesGallery, PageShell, Toolbar } from '../components';
 import { PageHeading } from '../typography';
 
 const MoviesPage = ({
+	actorFilter,
+	actorsList,
 	closeCreateOnClickHandler,
 	closePreviewOnClickHandler,
 	createModalIsOpen,
@@ -12,6 +14,7 @@ const MoviesPage = ({
 	dateFilter,
 	detailsModalIsOpen,
 	favouriteMovieTitles,
+	filterActorOnChangeHandler,
 	filterDateOnChangeHandler,
 	filterSelectOnChangeHandler,
 	moviesList,
@@ -23,17 +26,21 @@ const MoviesPage = ({
 	<PageShell>
 		<PageHeading text="Movies" />
 		<Toolbar
+			actorFilter={actorFilter}
+			actorsList={actorsList}
 			closeCreateOnClickHandler={closeCreateOnClickHandler}
 			createModalIsOpen={createModalIsOpen}
 			createMovieOnClickHandler={createMovieOnClickHandler}
 			currentFilter={currentFilter}
 			dateFilter={dateFilter}
+			filterActorOnChangeHandler={filterActorOnChangeHandler}
 			filterDateOnChangeHandler={filterDateOnChangeHandler}
 			filterSelectOnChangeHandler={filterSelectOnChangeHandler}
 			moviesList={moviesList}
 			openCreateOnClickHandler={openCreateOnClickHandler}
 		/>
 		<MoviesGallery
+			actorFilter={actorFilter}
 			closePreviewOnClickHandler={closePreviewOnClickHandler}
 			createModalIsOpen={createModalIsOpen}
 			currentFilter={currentFilter}
@@ -49,6 +56,8 @@ const MoviesPage = ({
 );
 
 MoviesPage.propTypes = {
+	actorFilter: PropTypes.string.isRequired,
+	actorsList: PropTypes.array.isRequired,
 	closeCreateOnClickHandler: PropTypes.func.isRequired,
 	closePreviewOnClickHandler: PropTypes.func.isRequired,
 	createMovieOnClickHandler: PropTypes.func.isRequired,
@@ -59,6 +68,7 @@ MoviesPage.propTypes = {
 	}).isRequired,
 	detailsModalIsOpen: PropTypes.bool.isRequired,
 	favouriteMovieTitles: PropTypes.array.isRequired,
+	filterActorOnChangeHandler: PropTypes.func.isRequired,
 	filterDateOnChangeHandler: PropTypes.func.isRequired,
 	filterSelectOnChangeHandler: PropTypes.func.isRequired,
 	moviesList: PropTypes.array.isRequired,
