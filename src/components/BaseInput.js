@@ -18,12 +18,13 @@ const StyledBaseInput = styled('input')`
 `;
 
 const StyledWrapper = styled('div')`
+	${(props) => props.isRow && 'align-items: center;'}
 	display: flex;
-	flex-direction: column;
+	flex-direction: ${(props) => (props.isRow ? 'row' : 'column')};
 	${marginExternal}
 
 	label {
-		margin-bottom: 8px;
+		${(props) => !props.isRow && 'margin-bottom: 8px;'}
 	}
 `;
 
@@ -42,8 +43,8 @@ const onChangeHandler = ({ target }, onChange, customValidation) => {
 	});
 };
 
-const BaseInput = ({ customValidation, id, labelText, onChange, isRequired, type, step, value }) => (
-	<StyledWrapper>
+const BaseInput = ({ customValidation, id, labelText, onChange, isRequired, isRow, type, step, value }) => (
+	<StyledWrapper isRow={isRow}>
 		<StandardLabel htmlFor={id} text={`${labelText}:`} />
 		<StyledBaseInput
 			id={id}
@@ -64,6 +65,7 @@ BaseInput.propTypes = {
 	}),
 	id: PropTypes.string.isRequired,
 	isRequired: PropTypes.bool.isRequired,
+	isRow: PropTypes.bool,
 	labelText: PropTypes.string.isRequired,
 	onChange: PropTypes.func.isRequired,
 	step: PropTypes.string,
@@ -73,6 +75,7 @@ BaseInput.propTypes = {
 
 BaseInput.defaultProps = {
 	isRequired: false,
+	isRow: false,
 };
 
 export { BaseInput };

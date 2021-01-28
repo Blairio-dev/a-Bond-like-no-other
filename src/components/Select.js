@@ -3,7 +3,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { ReactComponent as Chevron } from '../assets/svgs/chevron.svg';
 import { StandardLabel } from '../typography';
-import { colours } from '../assets/tokens';
+import { colours, marginExternal } from '../assets/tokens';
 
 const StyledIconWrapper = styled('div')`
 	svg {
@@ -53,15 +53,16 @@ const StyledWrapper = styled('div')`
 	font-size: 16px;
 	font-weight: bold;
 	height: min-content;
+	${marginExternal}
 	position: relative;
 	width: fit-content;
 `;
 
-const Select = ({ id, labelText, onChange, selectedId, selectOptions }) => (
+const Select = ({ id, labelText, onChange, selectedOption, selectOptions }) => (
 	<StyledWrapper>
 		<StyledFlexWrapper>
 			<StandardLabel htmlFor={id} text={labelText} />
-			<StyledSelect id={id} value={selectedId} onChange={onChange}>
+			<StyledSelect id={id} value={selectedOption} onChange={onChange}>
 				{selectOptions.map((item, index) => {
 					const key = `${id}-${index}`;
 					return (
@@ -85,8 +86,8 @@ Select.propTypes = {
 	labelText: PropTypes.string,
 	/** Callback function triggered on change. */
 	onChange: PropTypes.func,
-	/** ID of selected item. */
-	selectedId: PropTypes.string,
+	/** Selected item. */
+	selectedOption: PropTypes.string.isRequired,
 	/** Array of string options. */
 	selectOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

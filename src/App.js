@@ -14,7 +14,12 @@ class App extends Component {
 
 		this.state = {
 			createModalIsOpen: false,
+			currentFilter: 'None',
 			customMovies: checkCustomMovies(),
+			dateFilter: {
+				from: '',
+				to: '',
+			},
 			detailsModalIsOpen: Object.keys(checkSelectedMovie()).length !== 0,
 			favouriteMovieTitles: checkFavouriteMovies(),
 			moviesList: movies['Bond Films'].concat(checkCustomMovies()),
@@ -37,6 +42,16 @@ class App extends Component {
 	closePreviewOnClickHandler = () => {
 		this.setState(() => ({ detailsModalIsOpen: false, selectedMovieDetails: {} }));
 		updateSelectedMovie({});
+	};
+
+	filterDateOnChangeHandler = (value, isFrom) => {
+		const updatedDateFilter = Object.assign({}, this.state.dateFilter);
+		updatedDateFilter[isFrom ? 'from' : 'to'] = value;
+		this.setState(() => ({ dateFilter: updatedDateFilter }));
+	};
+
+	filterSelectOnChangeHandler = (event) => {
+		this.setState(() => ({ currentFilter: event.target.value }));
 	};
 
 	openCreateOnClickHandler = () => {
@@ -64,7 +79,15 @@ class App extends Component {
 	};
 
 	render() {
-		const { createModalIsOpen, detailsModalIsOpen, favouriteMovieTitles, moviesList, selectedMovieDetails } = this.state;
+		const {
+			createModalIsOpen,
+			currentFilter,
+			dateFilter,
+			detailsModalIsOpen,
+			favouriteMovieTitles,
+			moviesList,
+			selectedMovieDetails,
+		} = this.state;
 		return (
 			<Router>
 				<Sidebar />
@@ -79,8 +102,12 @@ class App extends Component {
 								closePreviewOnClickHandler={this.closePreviewOnClickHandler}
 								createMovieOnClickHandler={this.createMovieOnClickHandler}
 								createModalIsOpen={createModalIsOpen}
+								currentFilter={currentFilter}
+								dateFilter={dateFilter}
 								detailsModalIsOpen={detailsModalIsOpen}
 								favouriteMovieTitles={favouriteMovieTitles}
+								filterDateOnChangeHandler={this.filterDateOnChangeHandler}
+								filterSelectOnChangeHandler={this.filterSelectOnChangeHandler}
 								moviesList={moviesList}
 								openCreateOnClickHandler={this.openCreateOnClickHandler}
 								openPreviewOnClickHandler={this.openPreviewOnClickHandler}

@@ -26,8 +26,8 @@ const basePropTypes = {
 	onClick: PropTypes.func.isRequired,
 };
 
-const Base = ({ displayType, labelText, onClick, willSubmitForm }) => (
-	<StyledButton displayType={displayType} onClick={onClick}>
+const Base = ({ displayType, labelText, onClick }) => (
+	<StyledButton displayType={displayType} onClick={onClick} type="button">
 		<ProminentText text={labelText} />
 	</StyledButton>
 );

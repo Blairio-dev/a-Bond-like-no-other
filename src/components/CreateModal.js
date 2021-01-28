@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import styled from '@emotion/styled';
 import { ActionButton, BaseModal, DateInput, NumberInput, TextArea, TextInput, URLInput } from '../components';
 import { colours, marginExternal } from '../assets/tokens';
-import moment from 'moment';
 
 const StyledForm = styled('form')`
 	color: ${colours.white};
