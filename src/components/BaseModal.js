@@ -16,7 +16,7 @@ const StyledCloseButton = styled('button')`
 	background: none;
 	border: 1px solid black;
 	border-radius: 8px;
-	color: hsl(0, 0%, 100%);
+	color: ${colours.white};
 	font-size: 16px;
 	font-weight: bold;
 	${marginExternal}

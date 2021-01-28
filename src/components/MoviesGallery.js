@@ -43,7 +43,6 @@ const MoviesGallery = ({
 	};
 	const modalIsOpen = createModalIsOpen || detailsModalIsOpen;
 	const emptyMoviesList = filteredMoviesList().length === 0;
-	console.log(emptyMoviesList);
 
 	return (
 		<StyledGrid>

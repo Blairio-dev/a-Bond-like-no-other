@@ -3,6 +3,7 @@ const colours = {
 	darkGrey: 'hsl(315, 6%, 13%)',
 	gold: 'hsl(51, 100%, 48%)',
 	red: 'hsl(0, 150%, 20%)',
+	yellow: 'hsl(61, 100%, 56%)',
 	white: 'hsl(0, 0%, 100%)',
 };
 

@@ -27,8 +27,8 @@ const StyledFlexWrapper = styled('div')`
 
 const StyledSelect = styled('select')`
 	appearance: none;
-	background-color: black;
-	border: 2px solid black;
+	background-color: ${colours.black};
+	border: 2px solid ${colours.black};
 	border-radius: 4px;
 	color: inherit;
 	font-family: inherit;

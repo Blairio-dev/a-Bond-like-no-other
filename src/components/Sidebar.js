@@ -48,7 +48,7 @@ const StyledList = styled('ul')`
 `;
 
 const StyledNav = styled('nav')`
-	background-color: hsl(0deg 0% 0%);
+	background-color: ${colours.black};
 	position: fixed;
 	height: 100%;
 	margin: 0;

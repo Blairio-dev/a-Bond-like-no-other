@@ -1,15 +1,30 @@
 import React from 'react';
 import { PageShell } from '../components';
-import { StandardText, PageHeading } from '../typography';
+import { StandardBody, PageHeading } from '../typography';
 
 const HomePage = () => (
 	<PageShell>
 		<PageHeading text="A Bond Like No Other" />
-		<StandardText
-			text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-			standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a
-			type specimen book."
-		/>
+		<StandardBody>
+			<span>
+				<p>If you're looking for a website all things Bond movies, then you've come to the right place.</p>
+				<p>
+					Use the sidebar to select your page and always know where you are with the <i>Gold Finger.</i>
+				</p>
+				<p>
+					<b>Movies:</b> A complete list of your Bond movies database.
+				</p>
+				<ul>
+					<li>Click on a movie thumbnail image to see more details.</li>
+					<li>Favourite movies from the details modal.</li>
+					<li>Filter movies by actor or release date.</li>
+					<li>Add more Bond movies to your database useing the "Create" button.</li>
+				</ul>
+				<p>
+					<b>Favourites:</b> All of your favourite Bond movies in one place.
+				</p>
+			</span>
+		</StandardBody>
 	</PageShell>
 );
 
