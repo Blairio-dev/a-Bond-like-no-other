@@ -5,10 +5,11 @@ import { StandardLabel } from '../typography';
 import { colours, marginExternal } from '../assets/tokens';
 
 const StyledBaseInput = styled('input')`
-	border: 2px solid black;
+	border: 2px solid ${colours.white};
 	border-radius: 4px;
 	font-family: Lato, sans-serif;
 	font-size: 16px;
+	height: 18px;
 	padding: 8px;
 
 	:focus {

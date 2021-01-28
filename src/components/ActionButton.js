@@ -13,7 +13,7 @@ const StyledButton = styled('button')`
 	${marginExternal}
 	padding: 8px 12px;
 	transition: transform 0.05s ease-out;
-	width: min-content;
+	height: min-content;
 
 	:focus,
 	:hover {
