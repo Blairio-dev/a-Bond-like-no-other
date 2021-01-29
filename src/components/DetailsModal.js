@@ -40,13 +40,7 @@ const StyledFavouriteButton = styled('button')`
 	}
 `;
 
-const DetailsModal = ({
-	closeOnClick,
-	favouriteMovieTitles,
-	isOpen,
-	selectedMovieDetails,
-	toggleFavouriteMovieOnClick,
-}) => {
+const DetailsModal = ({ closeOnClick, favouriteMovieTitles, selectedMovieDetails, toggleFavouriteMovieOnClick }) => {
 	const {
 		'Bond Actor': actorName,
 		'Box Office(Millions)': boxOfficeTakings,
@@ -65,7 +59,7 @@ const DetailsModal = ({
 		</StyledFaveTitle>
 	);
 	return (
-		<BaseModal closeOnClick={closeOnClick} isOpen={isOpen} title={title}>
+		<BaseModal closeOnClick={closeOnClick} title={title}>
 			<StyledPoster src={imageUrl} alt={`${movieName}-poster`} />
 			<DescriptionList
 				items={[
@@ -82,7 +76,6 @@ const DetailsModal = ({
 DetailsModal.propTypes = {
 	closeOnClick: PropTypes.func.isRequired,
 	favouriteMovieTitles: PropTypes.array.isRequired,
-	isOpen: PropTypes.bool.isRequired,
 	selectedMovieDetails: PropTypes.shape({
 		'Bond Actor': PropTypes.string.isRequired,
 		'Box Office(Millions)': PropTypes.string.isRequired,
@@ -92,10 +85,6 @@ DetailsModal.propTypes = {
 		'UK release date': PropTypes.string.isRequired,
 	}).isRequired,
 	toggleFavouriteMovieOnClick: PropTypes.func.isRequired,
-};
-
-DetailsModal.defaultProps = {
-	isOpen: false,
 };
 
 export { DetailsModal };

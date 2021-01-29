@@ -48,7 +48,7 @@ const StyledTitleBar = styled('div')`
 const StyledWrapper = styled('div')`
 	align-items: center;
 	background: rgba(0, 0, 0, 0.8);
-	display: ${(props) => (props.isOpen ? 'flex' : 'none')};
+	display: flex;
 	left: 0;
 	height: 100vh;
 	justify-content: center;
@@ -58,10 +58,10 @@ const StyledWrapper = styled('div')`
 	width: 100vw;
 `;
 
-const BaseModal = ({ children, closeOnClick, isOpen, title }) => {
+const BaseModal = ({ children, closeOnClick, title }) => {
 	const isTitleString = typeof title === 'string';
 	return (
-		<StyledWrapper isOpen={isOpen}>
+		<StyledWrapper>
 			<StyledModal>
 				<StyledTitleBar>
 					{isTitleString ? <Title text={title} /> : title}
@@ -74,11 +74,9 @@ const BaseModal = ({ children, closeOnClick, isOpen, title }) => {
 };
 
 BaseModal.propTypes = {
-	isOpen: PropTypes.bool.isRequired,
-};
-
-BaseModal.defaultProps = {
-	isOpen: false,
+	children: PropTypes.node.isRequired,
+	closeOnClick: PropTypes.func.isRequired,
+	title: PropTypes.string.isRequired,
 };
 
 export { BaseModal };

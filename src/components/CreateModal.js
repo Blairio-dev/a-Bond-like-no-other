@@ -65,13 +65,13 @@ class CreateModal extends Component {
 	};
 
 	render() {
-		const { closeOnClick, createMovieOnClickHandler, isOpen, moviesList } = this.props;
+		const { closeOnClick, createMovieOnClickHandler, moviesList } = this.props;
 		const { movieDetails } = this.state;
 
 		const isExistingMovie = (movieName) => !!!moviesList.find((movieObj) => movieObj.Film === movieName);
 
 		return (
-			<BaseModal closeOnClick={closeOnClick} isOpen={isOpen} title="Create Movie">
+			<BaseModal closeOnClick={closeOnClick} title="Create Movie">
 				<StyledForm onSubmit={() => createMovieOnClickHandler(formatReleaseDate(movieDetails))}>
 					<TextInput
 						customValidation={{
@@ -133,11 +133,6 @@ CreateModal.propTypes = {
 	closeOnClick: PropTypes.func.isRequired,
 	createMovieOnClickHandler: PropTypes.func.isRequired,
 	moviesList: PropTypes.array.isRequired,
-	isOpen: PropTypes.bool.isRequired,
-};
-
-CreateModal.defaultProps = {
-	isOpen: false,
 };
 
 export { CreateModal };

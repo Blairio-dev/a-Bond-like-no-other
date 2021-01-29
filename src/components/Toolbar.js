@@ -86,7 +86,6 @@ const Toolbar = ({
 				closeOnClick={() => closeCreateOnClickHandler()}
 				createMovieOnClickHandler={createMovieOnClickHandler}
 				moviesList={moviesList}
-				isOpen={createModalIsOpen}
 			/>
 		)}
 	</StyledWrapper>

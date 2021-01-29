@@ -66,7 +66,6 @@ const MoviesGallery = ({
 				<DetailsModal
 					closeOnClick={() => closePreviewOnClickHandler()}
 					favouriteMovieTitles={favouriteMovieTitles}
-					isOpen={detailsModalIsOpen}
 					selectedMovieDetails={selectedMovieDetails}
 					toggleFavouriteMovieOnClick={toggleFavouriteMovieOnClick}
 				/>
