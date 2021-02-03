@@ -10,10 +10,10 @@ const StyledButton = styled('button')`
 	border-radius: 8px;
 	color: ${(props) => (props.displayType === 'primary' ? colours.black : colours.gold)};
 	cursor: pointer;
+	height: min-content;
 	${marginExternal}
 	padding: 8px 12px;
 	transition: transform 0.05s ease-out;
-	height: min-content;
 
 	:focus,
 	:hover {
