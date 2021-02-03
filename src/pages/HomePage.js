@@ -18,7 +18,7 @@ const HomePage = () => (
 					<li>Click on a movie thumbnail image to see more details.</li>
 					<li>Favourite movies from the details modal.</li>
 					<li>Filter movies by actor or release date.</li>
-					<li>Add more Bond movies to your database useing the "Create" button.</li>
+					<li>Add more Bond movies to your database using the "Create" button.</li>
 				</ul>
 				<p>
 					<b>Favourites:</b> All of your favourite Bond movies in one place.
